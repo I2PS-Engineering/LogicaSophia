@@ -1,36 +1,23 @@
-# LogicaSophia — Repository Description
+# LogicaSophia — Project Overview
 
 **Built by I2PS Engineering.**
 
-**GitHub About description (proposed):** Standalone Linux AI with local Qwen inference, evidence-governed agent execution, auditable results and a GUI. Built by I2PS Engineering.
+**Short description:** Standalone Linux AI with local Qwen inference, evidence-governed agent execution, auditable results and a graphical console. Built by I2PS Engineering.
 
-## What this repository represents
+## Product scope
 
-This public repository documents the LogicaSophia application and its noncommercial **package-only distribution**. It is not a source-code release or a claim that I2PS Engineering authored the separately licensed Qwen model weights or llama.cpp runtime.
+LogicaSophia is a locally deployed engineering AI application. It connects a licensed local language model to an independently implemented task controller. The model proposes bounded JSON decisions; the controller permits only `read_file`, `search_files` and `final` and rejects unapproved operations.
 
-## How LogicaSophia works
+A workspace scope limits which files may be inspected. Approved file observations carry SHA-256 evidence. The host checks observed source files again before reporting an accepted result. The GUI presents the model, task, decision trace, source observations and audit location.
 
-1. A local foundation model receives a user task and a bounded inventory of filenames within the explicitly selected workspace.
-2. The model proposes an action. The current application only accepts `read_file`, `search_files` and `final` decisions in a bounded JSON protocol.
-3. The original LogicaSophia controller validates requests and executes permitted **read-only** file operations; it does not grant arbitrary shell, installation, network or write access.
-4. Observations are recorded with evidence hashes, state transitions and a durable local audit record.
-5. A separate integrity check re-reads the observed files to check whether the source bytes changed.
-6. The GUI displays the task, available local model, action trace, result and audit location.
+**Verification scope:** Source-byte consistency and trace integrity. The current build does not prove the correctness of a model's interpretation or provide autonomous shell, code-writing or network access.
 
-**Important:** An accepted file-integrity check does **not** establish that the model understood the file correctly or proved its answer. Real Qwen behavior and performance on the target Ubuntu i5 still require field testing.
+## Deployment and licensing
 
-## Screenshots and technical claims
+The default Linux package uses local Qwen3 inference through an independently licensed inference server. The model and runtime are separate from I2PS-owned application code. The public repository provides technical documentation and the approved identity artwork. The application itself is issued as a proprietary noncommercial package.
 
-Do not use generic AI illustrations as LogicaSophia interface screenshots. The prior simulated task-trace and graphical README views are **not evidence of a real Qwen run**. The new packaged-GUI capture shows an honestly reported offline inference backend and is accompanied by capture-method notes. Real task screenshots must be tied to actual run records.
+**Release:** [0.4.1 Stable Package](RELEASE_0.4.1.md)  
+**Documentation:** [README](../README.md)  
+**License:** [Noncommercial Binary Use](../LICENSE.md)
 
-## Distribution, history and identity
-
-- The current default branch contains documentation, licensing and the original artwork only.
-- Older public commits and feature branches may still be reachable. Removing code from `main` does not erase Git history or revoke previously obtained copies.
-- The package is proprietary, free for authorized noncommercial use; the public repository remains public.
-- Source rights, model weights and third-party runtime licenses remain separate.
-- **Built by I2PS Engineering**; no AI company or assistant is identified as software author or co-author.
-
-## Repository About-field status
-
-The public GitHub About description remains a separate repository setting. Its text is documented above, but the connected GitHub integration currently does not expose an action to update that metadata field. Adding the text to this document or the README does not automatically populate GitHub About.
+Real Qwen inference on the initial Ubuntu i5 qualification host remains to be measured.
