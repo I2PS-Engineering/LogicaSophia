@@ -1,34 +1,26 @@
-# LogicaSophia 0.8.2 — Voice Conversation Engineering Preview
+# Release 0.8.2
 
-**Built by I2PS Engineering.** October 29, 2026. Ubuntu x86-64.
+**LogicaSophia — Built by I2PS Engineering**  
+**October 29, 2026 · Linux x86-64**
 
-**Distribution:** `LogicaSophia_0.8.2_Connected_Engineering_Package.zip`, issued separately by I2PS Engineering. The public GitHub repository contains documentation and approved original artwork only; **no proprietary I2PS source** or GitHub binary release asset is represented as published.
+**Official application archive:** \`LogicaSophia_0.8.2_Voice_Conversation_Package.zip\`  
+**SHA-256:** \`c6835ff6387fff0aaff032a0a763127d4fd8fc5fa6cdaff61fa8dc498ab3ba50\`
 
-**Package SHA-256:** `c6835ff6387fff0aaff032a0a763127d4fd8fc5fa6cdaff61fa8dc498ab3ba50`.
+This repository provides public product documentation and the approved original identity; the proprietary application ZIP is distributed separately through I2PS Engineering.
 
-## Verified local build
+## Release highlights
 
-- 113 local tests passed, including 13 new online-research tests with controlled upstream HTTP responses.
-- Packaged `research` command rejects requests lacking `--confirm-network`; planned workbench research does not contact the Internet.
-- The installed application generated a real PDF/Markdown/JSON record using a **clearly marked test-provider fixture**; PDF was rendered and visually reviewed. This does not establish successful live internet connectivity.
-- ZIP CRC passed, source-free app contents checked, and all 2,430 file-manifest entries independently rehashed and matched against the final ZIP.
-- Original approved artwork preserved byte-for-byte: SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`.
+- Conversation-level **speaker** control for reading an assistant answer aloud through Lexia, with stop playback.
+- Conversation-level **microphone** control that records and transcribes into an editable input without automatically sending the request.
+- Internet research with source links, PDF output, and explicit network authorization.
+- Engineering PNG/PDF reports, charts, architecture diagrams, and source-grounded briefs.
+- Optional model-backed image creation and separate scene narration.
+- Qt Studio organized into Assistant, Create and Results.
 
-## Conversation voice controls
+## Dependencies and availability
 
-- Speaker icon on the assistant's actual answer: approved Lexia reading, with stop playback.
-- Microphone icon beside task composer: capture 16-kHz PCM, offline multilingual transcription and editable draft.
-- No voice recording is sent to an external service; transcribed text is not auto-submitted.
-- 9 additional controlled transcription tests passed; real Qt audio capture/playback and actual STT model inference still need Ubuntu field qualification.
-- The STT runtime and multilingual base model are optional third-party components, installed on the user's own host with `bash LogicaSophia_Setup_Voice_Chat.txt`. They are not bundled.
+The core package includes its runtime, native controller and document-generation libraries. Qt, Kokoro voice assets and multilingual speech recognition require optional first-time installation. Creative image inference requires a configured ComfyUI checkpoint. A specific language-model vendor is not mandatory.
 
-## Connected engineering workflows
+Core application and workflow tests have passed. Hardware-dependent Qt interaction, microphone transcription, approved-voice synthesis, and diffusion-image output require validation on the destination machine. This version should not be represented as independently trained general AI or an unrestricted autonomous system.
 
-- Explicit internet-search request with Wikipedia/Crossref public providers and optional Brave Search account.
-- Online source citations, UTC time, provider warnings, report PDF and hashes.
-- Qt Assistant **Search online** button and Create **Online research** section.
-- Existing CSV/PNG/PDF/architecture/document workflows, image-model integration, approved Lexia narration and model-neutral native controller preserved.
-
-**Unqualified on intended Ubuntu host:** live upstream research requests, Qt visual interaction, actual Kokoro audio, ComfyUI checkpoint rendering and general LLM reasoning. This is an **engineering preview**, not a full autonomous AI stable release.
-
-**Licensing:** proprietary I2PS application free only for authorized noncommercial uses. Independent runtimes and service providers retain their own terms. See [LICENSE.md](../LICENSE.md) and [COPYRIGHT.md](../COPYRIGHT.md).
+**Terms:** [Noncommercial Binary Use License](../LICENSE.md) · [Third-party notices](../THIRD_PARTY_NOTICES.md).

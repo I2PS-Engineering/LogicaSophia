@@ -1,106 +1,93 @@
 # LogicaSophia
 
-**BUILT BY I2PS ENGINEERING**  
-**Independent AI engineering platform · Internet-connected research · Linux-first · Proprietary noncommercial package**
+**Built by I2PS Engineering.**  
+*An independent, model-flexible engineering assistant for Linux.*
 
-![Original approved LogicaSophia artwork](assets/identity.jpeg)
+![LogicaSophia — original approved identity](assets/identity.jpeg)
 
-LogicaSophia is an I2PS Engineering application for **engineering analysis, online research, real PNG/PDF deliverables, creative image workflows, and approved speech/narration**. The system uses an original evidence-governed task controller and replaceable inference interfaces.
+LogicaSophia brings together engineering analysis, internet research, technical document creation, image workflows, and voice interaction in one desktop application. Its I2PS-developed controller coordinates permitted operations and keeps a trace of inputs, generated files, and results.
 
-> **Current engineering release: 0.8.2 — Connected Engineering Preview · October 29, 2026.**  
-> 113 local tests passed; packaged CLI, consent controls, PDF export and microphone-transcription logic checked. Online provider tests used mocked HTTP, so live search on the designated Ubuntu i5 is not yet field-qualified. Qt window operation, actual diffusion image generation, microphone capture, real speech recognition and Kokoro playback remain pending field validation. This is not a production-ready general autonomous AI or newly trained foundation model.
+**Version 0.8.2** · Linux x86-64 · Proprietary package · Free for authorized noncommercial use
 
-## Voice conversation in Assistant
+## Explore, create, and communicate
 
-**Text-to-speech is a small speaker icon beside each displayed assistant answer**, rather than a separate long-form audio job. Click it to synthesize and play the answer in the approved Lexia/Kokoro voice; click again to stop.
+| Workspace | What you can do |
+| --- | --- |
+| **Assistant** | Enter engineering requests, inspect results and evidence, search online, and work by voice. |
+| **Create** | Build charts, architecture diagrams, PNG and PDF reports, source-based documents, images, and narrated material. |
+| **Results** | Locate generated files, citations, output records, and source/output checksums. |
 
-**Voice input is a microphone icon beside the engineering task field.** Click once to record a short voice message, click again to stop. A separately licensed multilingual speech recognizer transcribes the recording locally. The words appear in the task field for inspection or correction; **nothing is sent to the agent automatically**. Initial installation of speech models needs an Internet connection, but recorded voice is not uploaded to an external speech API.
+### Voice built into the conversation
 
-The original **Narration Studio** remains under Create for scene-by-scene narration, pronunciation approval and synchronized subtitle outputs. Conversation playback does not change its approved Lexia settings.
+- **Speaker icon on an answer:** click to hear that response read aloud with the approved **Lexia** voice; click again to stop.
+- **Microphone icon on the message composer:** click to record, click again to finish, and review the editable transcript before submitting it. Speech is **not sent automatically**.
+- **Narration Studio:** separately produce approved voiceovers, slide-by-slide audio, subtitles, and timing data.
 
-**Qualification:** Microphone/audio widgets are implemented, and 9 additional controlled transcription tests pass, but GUI audio, actual speech recognition and real Lexia playback on Ubuntu require field testing. See [Voice Conversation](docs/VOICE_CONVERSATION.md).
+The microphone uses an optional locally installed speech-recognition model. The first installation downloads its components; recordings are processed locally, not sent to an external speech-recognition API.
 
-## Internet connection and intelligence
+### Internet research
 
-**LogicaSophia is not restricted to offline mode.** It can send an approved research query to real Internet services, retrieve cited sources and generate a documented PDF. It can also run native engineering tools locally when online access is unnecessary.
+LogicaSophia is **internet-capable**. With the user's authorization, it can search Wikipedia and Crossref for sources, and optionally use Brave Search with a user-configured API key. It can export linked references and a research PDF. Local engineering tools can also work without network access. Search results are source material, not independently verified facts.
 
-The model-independent controller currently routes `Research ...` and `Search web for ...` to a real network adapter. **Wikipedia and Crossref** provide public references without an API key. **Brave Search** provides optional broad-index search when the user explicitly configures `LOGICASOPHIA_BRAVE_API_KEY`. The query is sent only after authorization; failed services are disclosed, not replaced with invented results. The report contains actual provider metadata, source links and timestamps rather than AI-generated guesses.
+### Engineering and media output
 
-**Model neutrality:** Qwen is neither the project's foundation nor a mandatory default. The native engine handles deterministic work, while external inference models can be deliberately configured. A trained general-purpose I2PS foundation model and unrestricted autonomous browsing are not yet implemented.
+LogicaSophia can create real **PNG charts and diagrams**, **PDF reports and briefs** from user-provided data or text, and auditable output files. The image-generation workflow connects to an explicitly configured diffusion system; for a branded image, the **actual supplied I2PS logo** is required. A configured model/checkpoint is needed to generate creative images.
 
-## Engineering features
+**Model flexibility:** A third-party language model is optional; none is required for built-in deterministic tools. LogicaSophia's current controller is not an independently trained general-purpose language model.
 
-| Capability | Included engineering pathway | Qualification |
-| --- | --- | --- |
-| Online research | Network search of Wikipedia/Crossref; optional Brave; `sources.json`, `research.md`, cited PDF and hashes | Request/response and output integration tests; live host test pending |
-| Source inspection | Scoped file reads and limited native Python AST/numeric analysis | Local automated tests |
-| Engineering PNG/PDF | CSV measurements to chart, numeric statistics and PDF; structured architecture diagrams | Real artifact generation tested on sample inputs |
-| Document studio | Paginated source-grounded PDF briefs from approved Markdown/text | Automated PDF and source-hash tests |
-| Qt desktop | **Assistant / Create / Results**, workspace selector, Web search, artifact forms | Code integrated; desktop visual test pending |
-| Creative images | Local ComfyUI adapter; user-uploaded authentic I2PS shirt logo | Image checkpoint/real generation not yet qualified |
-| Lexia speech | Approved Kokoro v1.0 / `af_bella` / `en-us` / speed 1.1 | Kit/audit validated; synthesis pending real model download |
-| Slide narration | Pronunciation audit, human approval, scene WAVs, subtitles and timing manifest | Gate tested; long-form audio pending |
-| Source/output evidence | Hashes, task record, user approval and traceable output directory | Integrity does not prove factual correctness |
+## Install and open
 
-**Example image request:** “Make a picture of a cat skateboarding wearing a shirt with the authentic I2PS logo.” The real I2PS logo and a working image-generation checkpoint must be supplied. The LogicaSophia identity artwork is **not** silently substituted for the corporate shirt logo.
+Obtain the official **LogicaSophia 0.8.2** application archive from I2PS Engineering:
 
-## Deployment
+\`LogicaSophia_0.8.2_Voice_Conversation_Package.zip\`
 
-The public repository is a **documentation and identity repository**, not an application source checkout. Get the approved `LogicaSophia_0.8.1_Connected_Engineering_Package.zip` from I2PS Engineering and extract it on x86-64 Linux.
+The application is distributed separately as a package. **This public repository contains product documentation and original artwork, not the application source or a direct binary download.**
 
-Run the included commands from its extracted folder:
+On a Linux x86-64 desktop, extract the ZIP and open a terminal in the extracted directory:
 
-```bash
-# No network request: inspect installed components
-bash LogicaSophia_Start_AI.txt doctor
-
-# User-authorized Internet research and real cited PDF export
-bash LogicaSophia_Start_AI.txt research --query 'RISC-V pipeline architecture' --confirm-network
-
-# Preview first, then approve the requested operation
-bash LogicaSophia_Start_AI.txt work --goal 'Research thermal design of compact server enclosures'
-bash LogicaSophia_Start_AI.txt work --goal 'Research thermal design of compact server enclosures' --confirm
-
-# CSV-based actual chart and PDF output
-bash LogicaSophia_Start_AI.txt work --goal 'Create chart and report from measurements.csv' --confirm
-
-# Install optional desktop and approved Lexia dependencies, then open Qt
+\`\`\`bash
+# Install optional desktop and speech components (first use requires internet)
 bash LogicaSophia_Setup_And_Start.txt
+
+# Open the desktop application
 bash LogicaSophia_Start_AI.txt qt
-```
+\`\`\`
 
-**Bundled:** CPython 3.13, I2PS compiled application, NumPy, Pillow, ReportLab, SoundFile, original artwork and Lexia approved kit assets, plus a standard-library HTTPS research client.
+Other entry points:
 
-**Additional first-time dependencies:** PySide6/Qt, Kokoro ONNX and checksum-verified Kokoro v1.0 model files. Creative image generation requires a separate configured diffusion checkpoint and runtime; a broad-web Brave Search token is optional. A source-free bytecode package is not immune to reverse engineering.
+\`\`\`bash
+bash LogicaSophia_Start_AI.txt doctor
+bash LogicaSophia_Start_AI.txt research --query "RISC-V instruction pipeline" --confirm-network
+bash LogicaSophia_Start_AI.txt work --goal "Create chart and report from measurements.csv"
+\`\`\`
 
-For procedures and provenance see [Installation](docs/INSTALLATION.md), [Internet Research](docs/ONLINE_RESEARCH.md), [Capabilities](docs/CAPABILITIES.md), [Architecture](docs/ARCHITECTURE.md), [Voice / Lexia](docs/VOICE_LEXIA.md) and [Security & Verification](docs/SECURITY_AND_VERIFICATION.md).
+For input files, use the authorized workspace. The work command can preview a task before approval. See [Getting started](docs/GETTING_STARTED.md) for configuration and optional components.
 
-## Architecture
+## Technical overview
 
-```text
-         LogicaSophia Qt Studio · I2PS Engineering
-          Assistant  ·  Create  ·  Results
+\`\`\`text
+                LogicaSophia desktop
+             Assistant · Create · Results
                          |
-            Governed task dispatcher
-            plan · validate · approve
-                 /          \
-        Native tools       Online tools
-        AST / CSV          HTTPS research
-        PNG / PDF          cited metadata
-                 \          /
-                  Source evidence
-                  SHA-256 / audit
+             I2PS task controller
+            plan · authorize · execute
+                 /             \
+       Native engineering      Online research
+       file / CSV / PNG / PDF   sources and references
+                 \             /
+                 Audited outputs
+                files · links · hashes
                          |
-           Optional explicit model adapters
-           Text inference · Image · Lexia
-```
+                Optional adapters
+             image · speech · language
+\`\`\`
 
-The application records **what was actually read or generated**. File-integrity checks do not establish semantic correctness; externally retrieved snippets and article metadata are not fact-checked conclusions. The controller does not silently authorize general code execution or unrestricted access to online accounts.
+A file hash documents integrity, **not** the scientific correctness of an engineering conclusion. Some advanced capabilities require installed models and device-specific validation before use. See [Features and requirements](docs/FEATURES.md), [Architecture](docs/ARCHITECTURE.md), and [Security](docs/SECURITY.md).
 
-## Identity and license
+## Documentation
 
-**Built by I2PS Engineering.** The approved 1254 × 1254 original LogicaSophia JPEG is committed at [assets/identity.jpeg](assets/identity.jpeg), SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`, unchanged. The authorship belongs to I2PS Engineering, not to an outside AI assistant or model provider.
+[Getting started](docs/GETTING_STARTED.md) · [Features](docs/FEATURES.md) · [Voice and narration](docs/VOICE.md) · [Architecture](docs/ARCHITECTURE.md) · [Version 0.8.2](docs/RELEASE_0.8.2.md)
 
-The I2PS application uses [proprietary noncommercial package licensing](LICENSE.md). Source files are not distributed in the current public branch or package. Third-party models, runtimes, search services and libraries retain their own licenses and terms. This is **not OSI open source**.
+## Ownership and licensing
 
-**Engineering release details:** [v0.8.2](docs/RELEASE_0.8.2.md). Hardware-specific live web, Qt, Kokoro and diffusion checks remain open before a full public stable qualification.
+**Built by I2PS Engineering.** The original LogicaSophia identity artwork is retained without alteration. I2PS-owned software is made available under the [Noncommercial Binary Use License](LICENSE.md). This is **not an open-source software license**. Third-party inference engines, libraries, models, and online services retain their own ownership and terms; see [Third-party notices](THIRD_PARTY_NOTICES.md) and [Copyright](COPYRIGHT.md).

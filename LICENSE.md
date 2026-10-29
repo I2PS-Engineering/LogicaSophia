@@ -16,5 +16,3 @@ Copyright (c) 2026 I2PS Engineering. All rights reserved.
 **Classification:** Free for permitted noncommercial use, proprietary, binary/package distribution. **This is not open source and does not provide a source code license.**
 
 For commercial licensing or additional redistribution permission, contact I2PS Engineering through its official channels.
-
-**Legal review recommended before broad public distribution.**
