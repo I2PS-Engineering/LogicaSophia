@@ -4,7 +4,7 @@
 
 LogicaSophia is built around an **I2PS-developed task controller**, not around one mandatory language-model provider.
 
-\`\`\`text
+```text
        User instruction / voice transcript
                       |
              Qt conversation UI
@@ -21,7 +21,7 @@ LogicaSophia is built around an **I2PS-developed task controller**, not around o
                       |
                 Output records
          files · source links · SHA-256
-\`\`\`
+```
 
 ## Responsibilities
 
