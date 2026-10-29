@@ -1,5 +1,9 @@
 # LogicaSophia
 
+**Repository description:** LogicaSophia is a standalone Linux AI engineering system combining locally hosted Qwen-compatible inference, an original evidence-governed agent controller, scoped read-only tools, independently checked file evidence, durable audit records and a graphical console. **Built by I2PS Engineering.**
+
+For how the AI works and what this public package-only repository does, see [Repository Description](docs/REPOSITORY_DESCRIPTION.md).
+
 **Built by I2PS Engineering.**  
 Independent, local-first AI engineering system. Proprietary package distribution; free for authorized noncommercial use.
 
@@ -188,7 +192,7 @@ The issued package includes this complete technical README, binary-use license, 
 
 ## 9. GUI and README snapshots
 
-The official package includes four captured screenshots: GUI ready, simulated-model task trace, README overview, and README architecture. The task screenshot is **simulated**, not an actual Qwen benchmark. Screenshots demonstrate presentation, not field performance.
+**Screenshot accuracy:** The earlier four-image collection is deprecated as release evidence. Those views included simulated task execution and stylized README renders; they are not evidence of actual Qwen inference or a live GitHub README screenshot. The current verified preview shows the packaged UI with its model backend **offline** and preserves the original approved artwork. Real Qwen screenshots require actual field execution plus corresponding audit records. See [Screenshot Evidence](docs/SCREENSHOT_EVIDENCE.md).
 
 ## 10. Product boundaries and licensing
 

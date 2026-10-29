@@ -16,9 +16,9 @@ Package SHA-256: `b9988090fd25e2d4e3f56a7393e8a866d676e7b162d32434086c6f8061a236
 
 - 40 local automated tests passed before packaging.
 - Bundle starts and serves its GUI locally in a controlled smoke test; the original artwork hash matches.
-- GUI snapshots showing task execution use a **simulated local model**, not genuine Qwen inference.
+- The previous preview collection is deprecated as release evidence; it showed simulated-model task events and stylized README renders. A separate honest offline-state GUI capture comes from packaged HTML/CSS/JPEG, with the model state measured from the actual running package. See [Screenshot Evidence](SCREENSHOT_EVIDENCE.md). No actual Qwen run is claimed.
 - The runtime package uses bytecode, which does not prevent reverse engineering.
-- Historical source commits remain in GitHub; changing repository visibility is required to prevent casual public browsing of that history.
+- The repository remains public by owner choice. Historical source commits and development branches may still be accessible. Deleting source from `main` does not conceal history or revoke earlier copies. No history rewrite has been attempted.
 
 ## License and attribution
 
