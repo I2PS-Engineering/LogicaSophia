@@ -13,26 +13,26 @@ The supplied package includes its own Python runtime and core numeric, plotting,
 
 ## Start the application
 
-Get the official \`LogicaSophia_0.8.2_Voice_Conversation_Package.zip\` from I2PS Engineering. Extract it. In a terminal opened in the extracted package directory, run:
+Get the official `LogicaSophia_0.8.2_Voice_Conversation_Package.zip` from I2PS Engineering. Extract it. In a terminal opened in the extracted package directory, run:
 
-\`\`\`bash
+```bash
 bash LogicaSophia_Setup_And_Start.txt
 bash LogicaSophia_Start_AI.txt qt
-\`\`\`
+```
 
 The application opens as a **Qt desktop window**, not a remote website or login portal. Select a project workspace with **Choose folder**. Access Assistant, Create, and Results from the main tabs.
 
 ## Check components
 
-\`\`\`bash
+```bash
 bash LogicaSophia_Start_AI.txt doctor
-\`\`\`
+```
 
 For microphone transcription setup only:
 
-\`\`\`bash
+```bash
 bash LogicaSophia_Setup_Voice_Chat.txt
-\`\`\`
+```
 
 The initial setup downloads the optional speech-recognition engine and multilingual model. Captured speech is transcribed locally. If the model cannot be installed, voice input remains unavailable until the issue is corrected; the rest of the application can still be used.
 
@@ -49,23 +49,23 @@ For long-form production, choose **Narration** in Create instead. See [Voice and
 
 Preview a supported task:
 
-\`\`\`bash
+```bash
 bash LogicaSophia_Start_AI.txt work --goal "Create chart and report from measurements.csv"
-\`\`\`
+```
 
 Approve a reviewed task:
 
-\`\`\`bash
+```bash
 bash LogicaSophia_Start_AI.txt work --goal "Create chart and report from measurements.csv" --confirm
-\`\`\`
+```
 
 Research online with explicit authorization:
 
-\`\`\`bash
+```bash
 bash LogicaSophia_Start_AI.txt research --query "RISC-V instruction pipeline" --confirm-network
-\`\`\`
+```
 
-Wikipedia and Crossref need no search API key. For optional Brave Search, configure \`LOGICASOPHIA_BRAVE_API_KEY\` in the process environment; never add credentials to files committed to GitHub.
+Wikipedia and Crossref need no search API key. For optional Brave Search, configure `LOGICASOPHIA_BRAVE_API_KEY` in the process environment; never add credentials to files committed to GitHub.
 
 ## Distribution
 
