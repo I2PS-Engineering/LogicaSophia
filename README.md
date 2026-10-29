@@ -5,7 +5,9 @@
 > **Project status · 0.4.0 (October 29, 2026)**  
 > A working application foundation with a genuine local-model interface, an evidence-governed agent controller, a browser-based GUI, and an explicit Qwen model deployment option. Source/agent/GUI behavior is covered by local automated tests; **real Qwen inference performance and tool-use reliability on the intended Ubuntu i5 have not yet been field-verified.** LogicaSophia is an AI *application* built around independently obtained foundation models. It is not a newly trained foundation model or a claim of artificial general intelligence.
 
-![Approved LogicaSophia artwork](src/logicasophia/web/identity.webp)
+![Approved LogicaSophia artwork — original supplied JPEG](src/logicasophia/web/identity.jpeg)
+
+**Visual identity:** `src/logicasophia/web/identity.jpeg` is the exact, original user-approved artwork (SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`), served unmodified. No substitutions, recoloring, recompression or replacement artwork without explicit authorization.
 
 ## 1. What LogicaSophia is
 

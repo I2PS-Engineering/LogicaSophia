@@ -135,9 +135,9 @@ class RequestHandler(BaseHTTPRequestHandler):
             # Token is ASCII URL-safe. Never store it outside the local HTML page.
             content=template.replace('__LOCAL_TASK_TOKEN__',self.server.token)
             return self._reply(200,content.encode('utf-8'),'text/html; charset=utf-8')
-        if route in ('/assets/identity.webp','/assets/app.css','/assets/app.js'):
+        if route in ('/assets/identity.jpeg','/assets/app.css','/assets/app.js'):
             file = STATIC / route.split('/')[-1]
-            kind = {'webp':'image/webp','css':'text/css; charset=utf-8','js':'text/javascript; charset=utf-8'}[file.suffix[1:]]
+            kind = {'jpeg':'image/jpeg','css':'text/css; charset=utf-8','js':'text/javascript; charset=utf-8'}[file.suffix[1:]]
             return self._reply(200,file.read_bytes(),kind,cache='public, max-age=300')
         if route == '/api/status':
             try:
