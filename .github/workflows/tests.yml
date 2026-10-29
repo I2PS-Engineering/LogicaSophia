@@ -1,0 +1,21 @@
+name: LogicaSophia validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run all unit tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
+      - name: Run deterministic evidence smoke test
+        run: python scripts/m2_smoke.py
+      - name: Run mock-model autonomous agent smoke test
+        run: python scripts/m3_smoke.py
