@@ -13,7 +13,32 @@ A standalone, **Linux-first AI application** maintained in the dedicated I2PS En
 
 **Not production-ready:** no user authentication, streaming, remote clients, distributed scheduling, model download, data retention or hardened multitenancy. Do not expose this API publicly.
 
-## Quick start (Linux, Python >=3.10)
+## Milestone 1 — Run on a Linux machine
+
+**No install, sudo, cluster, or GPU setup required for the qualification step.**
+From a fresh Linux terminal with Python 3.10 or newer:
+
+~~~bash
+git clone https://github.com/I2PS-Engineering/LogicaSophia.git
+cd LogicaSophia
+python3 scripts/qualify_linux.py
+~~~
+
+If you already cloned this repository, run `git pull` instead of cloning again.
+
+The command writes **logicasophia_hardware.json** in the working directory. Send that report back for an evidence-based inference-model shortlist.
+
+The report includes: Linux/CPU architecture and instruction flags, logical/observed physical CPU topology, RAM and huge pages, GPUs where detectable through sysfs or nvidia-smi, disk capacity and block device traits, and anonymous network link speeds. Unknown or unavailable measurements are explicitly null. It does not collect hostnames, usernames, IPs, MACs or serial numbers; it does not benchmark or install a model; it does not upload data.
+
+Test it using:
+
+~~~bash
+PYTHONPATH=src python3 -m unittest discover -s tests -v
+~~~
+
+See [Milestone 1 guide](docs/MILESTONE_01.md).
+
+## Optional AI gateway (Linux, Python >=3.10)
 
 ~~~bash
 git clone https://github.com/I2PS-Engineering/LogicaSophia.git
