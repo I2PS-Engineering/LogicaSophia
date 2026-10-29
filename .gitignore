@@ -21,7 +21,6 @@ checkpoints/
 data/
 datasets/
 logs/
-.DS_Store
-
-# Local hardware qualification reports
+results/
 logicasophia_hardware*.json
+.DS_Store

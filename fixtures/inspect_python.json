@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "task_id": "fixture-read-001",
+  "goal": "Verify the sample add function contains the intended expression",
+  "allowed_tools": ["read_file"],
+  "steps": [{"tool": "read_file", "path": "hello.py"}],
+  "success_checks": [{"type": "file_contains", "path": "hello.py", "text": "return a + b"}]
+}
