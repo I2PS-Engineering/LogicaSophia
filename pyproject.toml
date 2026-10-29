@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "logicasophia"
-version = "0.2.0"
-description = "LogicaSophia independent local-first AI gateway"
+version = "0.3.0"
+description = "LogicaSophia standalone evidence-governed AI engineering agent"
 requires-python = ">=3.10"
 dependencies = []
 

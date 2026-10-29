@@ -1,86 +1,45 @@
 # LogicaSophia
 
-A standalone, **Linux-first AI application** maintained in the dedicated I2PS Engineering repository. Official project name: **LogicaSophia** (one word, capital L and S).
+Independent, standalone Linux agentic AI engineering system by I2PS Engineering.
 
-## Implementation status — v0.2.0
+## v0.3.0 — First connected agent
 
-- Read-only Linux hardware inventory (`logicasophia inventory`).
-- Local HTTP API bound **only to 127.0.0.1** (`logicasophia serve`).
-- Truthful `GET /health` inference readiness and `GET /v1/models` listing.
-- `POST /v1/chat/completions` proxy to a **separately installed and running**, OpenAI-compatible LOCAL inference server (non-streaming requests).
-- No model, inference runtime or hardware selected or installed automatically. No hardcoded weights or fabricated responses.
-- Standard-library Python runtime; automated tests include a stub model backend.
+LogicaSophia connects a replaceable localhost foundation model to our original evidence-governed execution controller. It can independently select bounded read/search operations in a workspace, inspect real files and produce an answer. The host validates every tool request, checks source evidence integrity and records an audit trail. It has **no access to arbitrary shell commands or system writes**.
 
-**Not production-ready:** no user authentication, streaming, remote clients, distributed scheduling, model download, data retention or hardened multitenancy. Do not expose this API publicly.
+This is original orchestration software. OpenClaw and Claw Code are **architectural references**, not copied source or foundation models. No weights were obtained from the Claude Code source leak.
 
-## Milestone 1 — Run on a Linux machine
+## First run on Ubuntu (one USB text file)
 
-**No install, sudo, cluster, or GPU setup required for the qualification step.**
-From a fresh Linux terminal with Python 3.10 or newer:
+Download `LogicaSophia_Start_AI.txt`, transfer it to your Linux machine and execute:
 
-~~~bash
-git clone https://github.com/I2PS-Engineering/LogicaSophia.git
-cd LogicaSophia
-python3 scripts/qualify_linux.py
-~~~
+```bash
+bash LogicaSophia_Start_AI.txt
+```
 
-If you already cloned this repository, run `git pull` instead of cloning again.
+Internet is required on first run. The launcher builds llama.cpp as a replaceable local inference backend and downloads an *experimental* small open-weight model to prove an end-to-end loop on the i5 test host. It runs the tests and the mock-model integration smoke check before opening an interactive prompt.
 
-The command writes **logicasophia_hardware.json** in the working directory. Send that report back for an evidence-based inference-model shortlist.
+## Direct CLI (if you already have a local model server)
 
-The report includes: Linux/CPU architecture and instruction flags, logical/observed physical CPU topology, RAM and huge pages, GPUs where detectable through sysfs or nvidia-smi, disk capacity and block device traits, and anonymous network link speeds. Unknown or unavailable measurements are explicitly null. It does not collect hostnames, usernames, IPs, MACs or serial numbers; it does not benchmark or install a model; it does not upload data.
+```bash
+PYTHONPATH=src python3 -m logicasophia agent \
+  --goal 'Explain hello.py' --workspace fixtures/project_fixture \
+  --backend-url http://127.0.0.1:8090
+```
 
-Test it using:
+Model discovery is automatic. You may use a different local inference runtime/model; there is no hardcoded Qwen dependency. Model interactions are limited by the selected model's ability to emit valid structured JSON.
 
-~~~bash
+## Verify and diagnose
+
+```bash
 PYTHONPATH=src python3 -m unittest discover -s tests -v
-~~~
+python3 scripts/m2_smoke.py
+python3 scripts/m3_smoke.py
+```
 
-See [Milestone 1 guide](docs/MILESTONE_01.md).
+Each run records `outcome.json`, `trace.jsonl`, and `events.sqlite3`. An `ACCEPTED` read-only run means evidence files remained unchanged, **not** that the model's interpretation has been fact-checked.
 
-## Optional AI gateway (Linux, Python >=3.10)
+Other existing commands are unchanged: `logicasophia inventory`, `logicasophia serve` and `python3 scripts/qualify_linux.py`.
 
-~~~bash
-git clone https://github.com/I2PS-Engineering/LogicaSophia.git
-cd LogicaSophia
-PYTHONPATH=src python3 -m unittest discover -s tests -v
-bash scripts/bootstrap.sh
-source .venv/bin/activate
-logicasophia inventory
-logicasophia serve
-~~~
+See `docs/MILESTONE_03.md` for implementation details, limits and privacy controls.
 
-In another shell:
-
-~~~bash
-curl -s http://127.0.0.1:8765/health
-curl -s http://127.0.0.1:8765/v1/models
-~~~
-
-Without a model backend, the chat API returns HTTP 503 rather than pretending inference works.
-
-To use an **already running** local OpenAI-compatible model server on port 8080:
-
-~~~bash
-logicasophia serve --backend-url http://127.0.0.1:8080
-~~~
-
-Request a real response (replace `<model-id>` with one returned by the local model listing):
-
-~~~bash
-curl -s http://127.0.0.1:8765/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d '{"model":"<model-id>","messages":[{"role":"user","content":"Hello"}],"stream":false}'
-~~~
-
-**Backend boundary:** The upstream URL must be `http://127.0.0.1:PORT` or `http://[::1]:PORT`. No DNS hostnames, remote endpoints, or redirects are accepted. Only model listing and non-streaming chat requests are forwarded.
-
-## Architecture
-
-LogicaSophia owns AI-specific inference APIs, model adapters and future evaluation/knowledge layers. **Orion Core, Data Core, Phoenix Core and Horizon Core remain distinct architectural subsystems**, not active dependencies. Older Atlas Nexus model and Kubernetes decisions are **not automatically approvals for LogicaSophia**.
-
-Source migrated from the Atlas Nexus `LogicaSofia/` directory on 2026-10-29. All subsequent development is in this dedicated repository; Atlas Nexus is not modified by this migration.
-
-See `docs/ARCHITECTURE.md` and `docs/DECISIONS.md`. Do not commit credentials, weights, private data or datasets.
-
-**License:** Not yet selected. No public reuse rights are granted by this bootstrap.
+**Licensing:** the LogicaSophia project has not yet selected its distribution license. The optional external inference runtime/model have separate licenses; respect their notices.
