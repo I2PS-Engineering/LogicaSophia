@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="logicasophia-token" content="__LOCAL_TASK_TOKEN__">
+<title>LogicaSophia · Intelligence Console</title>
+<link rel="icon" type="image/webp" href="/assets/identity.webp">
+<link rel="stylesheet" href="/assets/app.css">
+<script defer src="/assets/app.js"></script>
+</head>
+<body>
+<div class="shell">
+ <aside class="sidebar">
+  <div class="brand"><img src="/assets/identity.webp" alt="Approved LogicaSophia gold identity"><div class="brand-title">LogicaSophia</div><div class="brand-sub">I2PS ENGINEERING · LOCAL AI</div></div>
+  <div class="aside-section">OPERATING MODE</div>
+  <div class="nav active"><span class="nav-symbol">◈</span><span>Intelligence Console</span></div>
+  <div class="nav"><span class="nav-symbol">⌘</span><span>Evidence &amp; Verification</span></div>
+  <div class="aside-section recent-title">RECENT TASKS</div><div id="history" class="history"><span class="muted">No tasks yet</span></div>
+  <div class="sidebar-foot"><span class="pulse"></span>LOCALHOST ONLY<div>Standalone · Read-only tools</div></div>
+ </aside>
+ <main class="main">
+  <header class="header"><div><div class="eyebrow">LOGICASOPHIA / INTELLIGENCE WORKSPACE</div><h1>Engineering intelligence, with evidence.</h1><p>Local Qwen inference. Original task orchestration. Independently verified source observations.</p></div><div class="header-mark">LS <span>0.4</span></div></header>
+  <div class="status-grid">
+   <div class="stat"><span class="stat-label">INFERENCE RUNTIME</span><div id="model-status" class="stat-value">Checking…</div><div class="stat-meta" id="backend-detail">Local endpoint · :8090</div></div>
+   <div class="stat"><span class="stat-label">ENGINE POLICY</span><div class="stat-value">Evidence governed</div><div class="stat-meta">Read + search only · No shell access</div></div>
+   <div class="stat"><span class="stat-label">WORKSPACE</span><div class="stat-value">Scoped</div><div class="stat-meta path" id="workspace">Reading configuration…</div></div>
+  </div>
+  <div class="columns">
+   <section class="panel workspace-panel">
+    <div class="section-title"><div><div class="section-kicker">01 / TASK</div><h2>Ask LogicaSophia</h2></div><span class="section-icon">⌘</span></div>
+    <label for="model">Active local model</label><select id="model"><option value="">Discovering local models…</option></select>
+    <label for="goal">Engineering instruction</label><textarea id="goal" placeholder="Inspect hello.py, explain add(7, 5), and quote the line that proves the result."></textarea>
+    <div class="hint">The model only sees visible filenames until it requests an approved file read. No network or write tools.</div>
+    <button id="run" disabled><span>◆</span> Execute verified task</button>
+    <div id="run-error" role="alert" class="error" hidden></div>
+   </section>
+   <section class="panel trace-panel">
+    <div class="section-title"><div><div class="section-kicker">02 / OBSERVABILITY</div><h2>Execution trace</h2></div><span id="run-state" class="state">IDLE</span></div>
+    <div class="trace" id="trace"><div class="empty"><div class="empty-graphic">◇</div>Run a task to see model decisions, tool observations and verification events.</div></div>
+   </section>
+  </div>
+  <section class="panel result-panel">
+   <div class="section-title"><div><div class="section-kicker">03 / VERIFIED OUTPUT</div><h2>Result &amp; evidence</h2></div><span class="section-icon">◉</span></div>
+   <div id="result"><p class="muted">Nothing completed yet. The final answer, source hashes, and audit path will appear here.</p></div>
+  </section>
+  <div class="footer">LOGICASOPHIA · I2PS ENGINEERING <span>Source-integrity verification is not a guarantee of answer correctness. © 2026</span></div>
+ </main>
+</div>
+</body></html>

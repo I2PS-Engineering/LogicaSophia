@@ -1,102 +1,82 @@
 #!/usr/bin/env bash
-# LogicaSophia — standalone Linux AI, one-file USB launcher
-# Executes explicitly when run with: bash LogicaSophia_Start_AI.txt
+# LogicaSophia v0.4.0 — one-file USB launcher, model + graphical interface.
+# Start with: bash LogicaSophia_Start_AI.txt [qwen|smol]
 set -Eeuo pipefail
-
-PROJECT_URL="https://github.com/I2PS-Engineering/LogicaSophia.git"
+MODEL_CHOICE="${1:-qwen}"
+case "$MODEL_CHOICE" in
+ qwen) MODEL_HF='ggml-org/Qwen3-1.7B-GGUF:Q4_K_M'; MODEL_ALIAS='logicasophia-qwen3-1.7b';;
+ smol) MODEL_HF='bartowski/SmolLM2-1.7B-Instruct-GGUF:Q4_K_M'; MODEL_ALIAS='logicasophia-smollm2-1.7b';;
+ *) echo 'Usage: bash LogicaSophia_Start_AI.txt [qwen|smol]' >&2; exit 2;;
+esac
+REPO='https://github.com/I2PS-Engineering/LogicaSophia.git'
 PROJECT="$HOME/LogicaSophia"
 RUNTIME="$HOME/.local/share/logicasophia/llama.cpp"
 LOGDIR="$HOME/.local/share/logicasophia/logs"
-PORT=8090
-# This is only a replaceable initial test model, NOT LogicaSophia's architecture.
-MODEL_HF="${LOGICASOPHIA_MODEL_HF:-bartowski/SmolLM2-1.7B-Instruct-GGUF:Q4_K_M}"
 mkdir -p "$LOGDIR"
-
-if [[ "$(uname -s)" != "Linux" ]]; then echo 'Linux is required' >&2; exit 1; fi
-if ! command -v python3 >/dev/null; then echo 'Python 3 is required' >&2; exit 1; fi
-
-echo '=== LogicaSophia standalone: install + local AI agent ==='
-if ! command -v git >/dev/null || ! command -v cmake >/dev/null || ! command -v g++ >/dev/null || ! command -v curl >/dev/null || ! dpkg-query -W -f='${Status}' libcurl4-openssl-dev 2>/dev/null | grep -q 'install ok installed'; then
-  echo 'Installing build dependencies (Ubuntu). This may ask for your sudo password.'
+[[ "$(uname -s)" == Linux ]] || { echo 'Linux required' >&2; exit 1; }
+command -v python3 >/dev/null || { echo 'Python 3.10+ required' >&2; exit 1; }
+python3 -c 'import sys;assert sys.version_info >= (3,10),"Python 3.10+ required"'
+for tool in git cmake g++ curl; do
+ if ! command -v "$tool" >/dev/null 2>&1; then
+  echo 'Installing Ubuntu dependencies (sudo may prompt for your password).'
   sudo apt-get update
   sudo apt-get install -y git cmake build-essential libcurl4-openssl-dev libssl-dev curl ca-certificates
+  break
+ fi
+done
+if ! dpkg-query -W -f='${Status}' libcurl4-openssl-dev 2>/dev/null | grep -q 'install ok installed'; then
+ sudo apt-get update
+ sudo apt-get install -y libcurl4-openssl-dev libssl-dev
 fi
 if [[ ! -d "$PROJECT/.git" ]]; then
-  git clone "$PROJECT_URL" "$PROJECT"
+ git clone "$REPO" "$PROJECT"
 else
-  # Only fast-forward clean main. Never reset/rewrite user changes.
-  if [[ "$(git -C "$PROJECT" branch --show-current)" != "main" ]]; then
-    echo "Switch your LogicaSophia checkout to main before running the launcher." >&2
-    exit 1
-  fi
-  if ! git -C "$PROJECT" diff --quiet || ! git -C "$PROJECT" diff --cached --quiet; then
-    echo 'Local changes found in LogicaSophia. Review them and update manually.' >&2
-    exit 1
-  fi
-  git -C "$PROJECT" fetch origin main
-  git -C "$PROJECT" merge --ff-only origin/main
+ [[ "$(git -C "$PROJECT" branch --show-current)" == main ]] || { echo 'Existing repository is not on main.' >&2; exit 1; }
+ git -C "$PROJECT" diff --quiet && git -C "$PROJECT" diff --cached --quiet || { echo 'Local changes exist; update manually.' >&2; exit 1; }
+ git -C "$PROJECT" fetch origin main
+ git -C "$PROJECT" merge --ff-only origin/main
 fi
 cd "$PROJECT"
 export PYTHONPATH="$PROJECT/src"
-
-echo '=== Checking original LogicaSophia agent tests ==='
+echo '=== Running LogicaSophia tests and tool-loop smoke test ==='
 python3 -m unittest discover -s tests -q
 python3 scripts/m3_smoke.py
-
 if [[ ! -d "$RUNTIME/.git" ]]; then
-  mkdir -p "$(dirname "$RUNTIME")"
-  git clone --depth 1 https://github.com/ggml-org/llama.cpp.git "$RUNTIME"
+ mkdir -p "$(dirname "$RUNTIME")"
+ git clone --depth 1 https://github.com/ggml-org/llama.cpp.git "$RUNTIME"
 fi
 if [[ ! -x "$RUNTIME/build/bin/llama-server" ]]; then
-  echo 'Building local llama.cpp inference server (CPU).'
-  cmake -S "$RUNTIME" -B "$RUNTIME/build" -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=ON
-  cmake --build "$RUNTIME/build" --target llama-server -j 4
+ echo '=== Building local CPU inference runtime ==='
+ cmake -S "$RUNTIME" -B "$RUNTIME/build" -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=ON
+ cmake --build "$RUNTIME/build" --target llama-server -j 4
 fi
-
-if curl -fsS --max-time 2 "http://127.0.0.1:$PORT/v1/models" >/dev/null 2>&1; then
-  echo "A compatible local model server is already responding on port $PORT."
-  STARTED_PID=''
-else
-  echo 'Starting replaceable local GGUF test model (download on first run).'
-  "$RUNTIME/build/bin/llama-server" \
-    -hf "$MODEL_HF" \
-    --host 127.0.0.1 --port "$PORT" -ngl 0 -t 4 -c 4096 \
-    > "$LOGDIR/model-server.log" 2>&1 &
-  STARTED_PID=$!
-  echo "Backend log: $LOGDIR/model-server.log"
-fi
-cleanup() {
-  if [[ -n "${STARTED_PID:-}" ]]; then kill "$STARTED_PID" 2>/dev/null || true; fi
-}
+SERVER_PID=''
+cleanup(){ [[ -z "$SERVER_PID" ]] || kill "$SERVER_PID" 2>/dev/null || true; }
 trap cleanup EXIT
-
-printf 'Initializing local AI server'
-while ! curl -fsS --max-time 2 "http://127.0.0.1:$PORT/v1/models" >/dev/null 2>&1; do
-  if [[ -n "${STARTED_PID:-}" ]] && ! kill -0 "$STARTED_PID" 2>/dev/null; then
-    echo; echo 'Model server exited. See the backend log:' >&2
-    tail -n 35 "$LOGDIR/model-server.log" >&2
-    exit 1
-  fi
-  printf '.'
-  sleep 3
+if curl -fsS --max-time 2 'http://127.0.0.1:8090/v1/models' >/dev/null 2>&1; then
+ echo 'An existing local model server is on port 8090. Using its loaded model.'
+else
+ echo "=== Starting $MODEL_CHOICE: $MODEL_HF ==="
+ # --reasoning off avoids Qwen thinking-token consumption with a compact JSON tool policy.
+ "$RUNTIME/build/bin/llama-server" -hf "$MODEL_HF" --alias "$MODEL_ALIAS" \
+  --host 127.0.0.1 --port 8090 -ngl 0 -t 4 -c 4096 --reasoning off \
+  > "$LOGDIR/model-server.log" 2>&1 &
+ SERVER_PID=$!
+fi
+printf 'Waiting for the local model to load'
+TRIES=0
+until curl -fsS --max-time 2 'http://127.0.0.1:8090/v1/models' >/dev/null 2>&1; do
+ TRIES=$((TRIES+1))
+ if [[ -n "$SERVER_PID" ]] && ! kill -0 "$SERVER_PID" 2>/dev/null; then
+  echo; echo 'Model server exited. Last log lines:' >&2
+  tail -n 50 "$LOGDIR/model-server.log" >&2
+  exit 1
+ fi
+ if [[ "$TRIES" -gt 160 ]]; then echo 'Startup timed out. Check model-server.log' >&2; exit 1; fi
+ printf '.'; sleep 3
 done
-printf '\nReady.\n'
-
-echo 'Workspace to inspect (press Enter for included demo):'
-read -r WORKSPACE || true
-WORKSPACE="${WORKSPACE:-$PROJECT/fixtures/project_fixture}"
-if [[ ! -d "$WORKSPACE" ]]; then echo 'Workspace directory not found.' >&2; exit 1; fi
-
-echo 'Enter an engineering task, or type EXIT to quit.'
-echo 'Example: Explain hello.py and identify what the function returns.'
-while true; do
-  printf '\nLogicaSophia > '
-  if ! IFS= read -r GOAL; then break; fi
-  [[ "$GOAL" == "EXIT" || "$GOAL" == "exit" ]] && break
-  [[ -z "$GOAL" ]] && continue
-  python3 -m logicasophia agent --goal "$GOAL" --workspace "$WORKSPACE" \
-    --results "$HOME/.local/share/logicasophia/results" \
-    --backend-url "http://127.0.0.1:$PORT" || true
-done
-
-echo 'LogicaSophia stopped. Reports are in ~/.local/share/logicasophia/results'
+printf '\n=== Opening LogicaSophia graphical interface ===\n'
+python3 -m logicasophia gui --port 8766 \
+ --backend-url http://127.0.0.1:8090 \
+ --workspace "$PROJECT/fixtures/project_fixture" \
+ --results "$HOME/.local/share/logicasophia/results"
