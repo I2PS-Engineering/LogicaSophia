@@ -1,37 +1,35 @@
-# LogicaSophia 0.4.1 Stable Code Baseline — Package Only
+# LogicaSophia 0.4.1 — Stable Package
 
 **Built by I2PS Engineering.**
 
-October 29, 2026. Binary/package distribution; no human-readable LogicaSophia source in the package. Local tests: 40/40 passed. Packaged Python 3.13 x86-64 runtime + compiled application bytecode; actual target Ubuntu 26.10 field test and Qwen inference are pending.
+**Release date:** October 29, 2026  
+**Platform:** Ubuntu Linux x86-64 (target host: Intel Core i5-6500T, 7.1 GiB RAM)  
+**Distribution:** Binary/package only, proprietary I2PS application; authorized noncommercial use under [LICENSE.md](../LICENSE.md).
 
-Original user-approved 1254x1254 JPEG SHA-256: `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`.
+## Package
 
-## Distribution
+**Filename:** `LogicaSophia_0.4.1_Stable_Package_Final.zip`
 
-Use the authorized I2PS-issued `LogicaSophia_0.4.1_Stable_Package_Final.zip`. After extracting, execute `bash LogicaSophia_Start_AI.txt` from its directory. First launch downloads separately licensed llama.cpp and Qwen and requires Internet access and appropriate local build tools. The repository's original source-based launcher is retired.
+**SHA-256:** `2111395cda9ee111f94aba6c2c95871348e5766f8c812d8ef91b39e46ef682ac`
 
-Current documentation-corrected package SHA-256: `2111395cda9ee111f94aba6c2c95871348e5766f8c812d8ef91b39e46ef682ac`. Previous evidence-corrected ZIP SHA-256: `11537f58e87405bb1b100f41fbc1ee0ff50b54786017efe7db8be9d150c250b1`.
+Unpack the official I2PS-issued archive and run `bash LogicaSophia_Start_AI.txt` from its extracted folder. An internet connection is needed for the initial external llama.cpp build and Qwen model download. The local GUI is at `http://127.0.0.1:8766` and the local model service uses port `8090`. The default Qwen3-1.7B Q4_K_M selection is replaceable.
 
-## Verification limits
+The package includes compiled I2PS application bytecode, a Python 3.13 runtime, the original approved artwork, documentation, integrity manifest and `Capture_Actual_GUI_Screenshot.txt`. It does not include proprietary I2PS `.py` application source. Bytecode should not be considered resistant to reverse engineering.
 
-- 40 local automated tests passed before packaging.
-- Bundle starts and serves its GUI locally in a controlled smoke test; the original artwork hash matches.
-- The previous preview collection has been removed from this corrected package. It showed simulated-model task events and stylized README renders. A separate honest offline-state GUI capture comes from packaged HTML/CSS/JPEG, with the model state measured from the actual running package. See [Screenshot Evidence](SCREENSHOT_EVIDENCE.md). No actual Qwen run is claimed.
-- The runtime package uses bytecode, which does not prevent reverse engineering.
-- The repository remains public by owner choice. Historical source commits and development branches may still be accessible. Deleting source from `main` does not conceal history or revoke earlier copies. No history rewrite has been attempted.
+## Verified functionality and boundaries
 
-## License and attribution
+- **40/40 local application and GUI tests passed** with a controlled model stub.
+- Packaged app starts locally and responds to GUI HTTP requests.
+- The approved artwork was preserved byte-for-byte (SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`).
+- Model-directed read-only `read_file` and `search_files` tools are enforced by a bounded host-side controller.
+- Traces and evidence are recorded in `outcome.json`, `trace.jsonl` and `events.sqlite3`. Acceptance validates source-file integrity, not semantic correctness.
+- Package ZIP and 738 integrity-manifest entries passed consistency checks.
+- A real Qwen task, CPU throughput, answer accuracy and GUI capture on the target Ubuntu i5 **have not yet been field-tested**.
 
-I2PS-owned application package: proprietary, free for authorized noncommercial use only. See [LICENSE.md](../LICENSE.md) and [COPYRIGHT.md](../COPYRIGHT.md). No AI provider credited as software author or co-author. Third-party model weights and inference runtime retain their own licenses.
+## Capture a real GUI session
 
-## Documentation and snapshot correction (same v0.4.1 application code)
+Start the app and run `bash Capture_Actual_GUI_Screenshot.txt` from the extracted package folder on the Ubuntu host. The helper saves a browser image, API status and checksum record. See [GUI capture requirements](SCREENSHOT_EVIDENCE.md). A Qwen execution claim additionally requires the matching real task trace and outcome.
 
-The corrected package removes misleading demonstration snapshots, retains the unchanged application binaries and approved JPEG, and adds one explicitly labeled offline presentation render plus a Linux on-host screenshot capture helper. Internal package SHA-256 manifest and ZIP archive were regenerated and verified. No Qwen field result is represented as measured. No historical commits or dates were rewritten.
+## Ownership
 
-## Documentation cleanup (application unchanged)
-
-The public GUI render is now committed as an actual PNG and verified against its SHA-256; it is labeled as a browser render of packaged GUI assets in an offline model state, not direct live navigation. The corrected ZIP contains one offline image, not the retired simulated-task and stylized README set. Package metadata and checksums were regenerated; all 19 bundled LogicaSophia application files match the previous packaging baseline byte-for-byte. The original artwork is unchanged. Qwen field inference remains unverified.
-
-## Package-documentation finalization (2026-10-29)
-
-The final ZIP includes `Capture_Actual_GUI_Screenshot.txt`, the previously missing on-machine screenshot helper. The tool captures the actual local GUI in installed Chromium/Chrome and saves an accompanying application status JSON and SHA-256 capture record. Its Bash syntax has been checked; browser operation on the target Ubuntu i5 remains to be validated. Source-free application bytecode and the approved original JPEG were unchanged by this packaging revision. The one included screenshot is an **offline presentation render**, not evidence of Qwen inference. Package integrity and 738 SHA-256 entries were verified.
+The LogicaSophia application and original engineering components are **built by I2PS Engineering**. Qwen weights and the llama.cpp inference runtime are external dependencies governed by their own terms. See [Copyright](../COPYRIGHT.md) and [License](../LICENSE.md).
