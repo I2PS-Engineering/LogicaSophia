@@ -1,13 +1,14 @@
 # LogicaSophia
 
-**Independent, local-first AI engineering system by I2PS Engineering.**
+**Built by I2PS Engineering.**  
+Independent, local-first AI engineering system. Proprietary package distribution; free for authorized noncommercial use.
 
-> **Project status · 0.4.0 (October 29, 2026)**  
-> A working application foundation with a genuine local-model interface, an evidence-governed agent controller, a browser-based GUI, and an explicit Qwen model deployment option. Source/agent/GUI behavior is covered by local automated tests; **real Qwen inference performance and tool-use reliability on the intended Ubuntu i5 have not yet been field-verified.** LogicaSophia is an AI *application* built around independently obtained foundation models. It is not a newly trained foundation model or a claim of artificial general intelligence.
+> **Release · 0.4.1 Stable Code Baseline (October 29, 2026) — Package only**  
+> A working application foundation with a genuine local-model interface, an evidence-governed agent controller, a browser-based GUI, and an explicit Qwen model deployment option. Agent/GUI behavior is covered by local automated tests; **real Qwen inference performance and tool-use reliability on the intended Ubuntu i5 have not yet been field-verified.** LogicaSophia is an AI *application* built around independently obtained foundation models. It is not a newly trained foundation model or a claim of artificial general intelligence.
 
-![Approved LogicaSophia artwork — original supplied JPEG](src/logicasophia/web/identity.jpeg)
+![Approved LogicaSophia original gold identity](assets/identity.jpeg)
 
-**Visual identity:** `src/logicasophia/web/identity.jpeg` is the exact, original user-approved artwork (SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`), served unmodified. No substitutions, recoloring, recompression or replacement artwork without explicit authorization.
+**Visual identity:** `assets/identity.jpeg` is the exact, original user-approved artwork (SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`), served unmodified. No substitutions, recoloring, recompression or replacement artwork without explicit authorization.
 
 ## 1. What LogicaSophia is
 
@@ -19,7 +20,7 @@ The project is **not** a reskin of another assistant. OpenClaw and Claude-Code-s
 
 ## 2. What the AI actually does today
 
-The 0.4.0 build supports the following complete local workflow:
+The 0.4.1 package supports the following locally controlled workflow:
 
 1. Start a locally hosted, licensed foundation model using an OpenAI-compatible inference server (the launcher defaults to **Qwen3-1.7B Q4_K_M**, CPU mode, to match our initial 7.1 GiB RAM Linux qualification host).
 2. Open the **LogicaSophia GUI** on `http://127.0.0.1:8766`. It displays the approved gold identity, backend status, model selector, workspace, task prompt, execution trace and result.
@@ -33,7 +34,7 @@ The 0.4.0 build supports the following complete local workflow:
 
 ### Current capabilities at a glance
 
-| Area | Working in v0.4.0 | Not yet implemented / not field-verified |
+| Area | Working in v0.4.1 | Not yet implemented / not field-verified |
 | --- | --- | --- |
 | Inference | OpenAI-compatible **local** backend selection and connection | Real Qwen throughput/tool adherence on target i5 not yet verified |
 | Foundation models | Qwen3-1.7B **installation choice**; alternate SmolLM2 launcher choice | Training/hosting our own base weights, or large model fleet |
@@ -90,13 +91,13 @@ The 0.4.0 build supports the following complete local workflow:
 
 **Target qualification machine:** Intel Core i5-6500T (4 cores / 4 threads), Ubuntu 26.10, approximately 7.1 GiB usable RAM, Intel HD 530 and ~211 GiB free disk. These are one test host's measurements, **not** hardcoded requirements for LogicaSophia.
 
-Copy the single text file `LogicaSophia_Start_AI.txt` onto a USB drive, take it to the Linux machine, and run:
+Extract the I2PS-issued binary package on the Linux machine, open a terminal in the extracted folder, and run the included launch script:
 
 ```bash
 bash LogicaSophia_Start_AI.txt
 ```
 
-The launcher performs an intentional one-time system setup with Ubuntu `apt` (may ask for your sudo password), fetches or fast-forwards the source, runs the tests, builds the open-source local inference backend and downloads **Qwen3-1.7B GGUF Q4_K_M** if not cached. It then starts the model on **127.0.0.1:8090** and opens the LogicaSophia UI on **127.0.0.1:8766**.
+The launcher uses the bundled precompiled LogicaSophia application and Python runtime, performs an intentional one-time Ubuntu `apt` setup (with your authorization), and builds the independently licensed local inference backend and downloads **Qwen3-1.7B GGUF Q4_K_M** if not cached. It then starts the model on **127.0.0.1:8090** and opens the LogicaSophia UI on **127.0.0.1:8766**.
 
 The model download needs internet on first use. All inference remains on the local machine afterward. The launcher uses a conservative four CPU threads and does not perform GPU offloading. It does not install or connect Atlas Nexus.
 
@@ -111,16 +112,15 @@ The default is `qwen`. **If a model server is already running on port 8090**, th
 ### Direct commands after installation
 
 ```bash
-cd ~/LogicaSophia
-export PYTHONPATH="$PWD/src"
-python3 -m logicasophia gui --workspace "$PWD/fixtures/project_fixture" \
+cd /path/to/extracted/LogicaSophia_0.4.1_Stable_Ubuntu_amd64
+bash LogicaSophia_Run.txt gui --workspace "$PWD/workspace" \
   --backend-url http://127.0.0.1:8090
 ```
 
 For a real project, explicitly select **the workspace you authorize**:
 
 ```bash
-python3 -m logicasophia gui --workspace /path/to/your/project \
+bash LogicaSophia_Run.txt gui --workspace /path/to/your/project \
   --backend-url http://127.0.0.1:8090
 ```
 
@@ -128,7 +128,7 @@ The GUI keeps this workspace fixed for the session; it does not enumerate the re
 
 ### First engineering test
 
-The bundled `fixtures/project_fixture/hello.py` contains:
+The bundled `workspace/hello.py` contains:
 
 ```python
 def add(a, b):
@@ -176,29 +176,22 @@ The future of LogicaSophia extends beyond a chatbot. These are **planned researc
 
 These experiments are how we establish **our own engineering contributions**, not by claiming ownership of the underlying model or third-party software.
 
-## 8. Development and validation
+## 8. Package testing and validation
 
-Python 3.10+; the LogicaSophia runtime and GUI use the Python standard library. Developer installation is optional:
+The official x86-64 Linux package includes compiled I2PS application bytecode and a CPython 3.13 runtime. **It does not distribute I2PS `.py` source.** Bytecode is not inherently resistant to reverse engineering. The package is locally smoke-tested; the target Ubuntu 26.10 machine and real Qwen inference have not been validated.
 
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -e .
-```
-
-Run the test suite and offline integration smoke checks:
-
-```bash
-PYTHONPATH=src python3 -m unittest discover -s tests -v
-PYTHONPATH=src python3 scripts/m2_smoke.py
-PYTHONPATH=src python3 scripts/m3_smoke.py
-```
+The internal engineering test suite passed 40 local tests, using a simulated model for agent and GUI integrations. The packaged application entrypoint and GUI HTTP endpoints were separately tested, and the served original artwork matches the approved SHA-256. These tests do **not** prove Qwen reasoning quality on the i5.
 
 Unit and GUI integration tests use a **simulated local model server**. A green test run confirms code-level contracts, not the language reasoning quality of Qwen. First-machine qualification requires a genuinely loaded model, at least one observed file read, an accepted audit replay and manual review of answer correctness.
 
-Additional technical documents: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), [`docs/DECISIONS.md`](docs/DECISIONS.md), [`docs/MILESTONE_02.md`](docs/MILESTONE_02.md), [`docs/MILESTONE_03.md`](docs/MILESTONE_03.md), [`docs/REFERENCE_BOUNDARIES.md`](docs/REFERENCE_BOUNDARIES.md), and [`docs/MILESTONE_04.md`](docs/MILESTONE_04.md).
+The issued package includes this complete technical README, binary-use license, authorship notice, machine-checkable SHA-256 manifest, and GUI/README snapshots. Internal proprietary source and development files are not part of the package.
 
-## 9. Product boundaries and licensing
+## 9. GUI and README snapshots
 
-**I2PS Engineering** maintains this LogicaSophia application and its original controller/GUI implementation. The external inference runtime and selected models have **their own copyright and licensing terms**, which must remain intact. The LogicaSophia source repository has not yet been assigned a project distribution license; repository visibility alone does not grant unrestricted reuse rights.
+The official package includes four captured screenshots: GUI ready, simulated-model task trace, README overview, and README architecture. The task screenshot is **simulated**, not an actual Qwen benchmark. Screenshots demonstrate presentation, not field performance.
+
+## 10. Product boundaries and licensing
+
+**I2PS Engineering** maintains this LogicaSophia application and its original controller/GUI implementation. The external inference runtime and selected models have **their own copyright and licensing terms**, which must remain intact. The I2PS-owned application is distributed only as a **proprietary package**, free for permitted noncommercial use under [LICENSE.md](LICENSE.md), with authorship and third-party notices in [COPYRIGHT.md](COPYRIGHT.md). **No I2PS source code is included in the current public branch or the issued package.** Earlier public Git history remains accessible unless repository visibility is changed; deleting current files does not erase historical commits. Commercial exploitation requires separate written permission. This is **not OSI open source**.
 
 This project is created independently for engineering research and progressive autonomous AI development. It makes **no ownership claim** over leaked source, public model weights, or third-party architectures, and it claims no proven performance advantage until the measurements and tests support one.
