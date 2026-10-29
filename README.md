@@ -1,14 +1,16 @@
 # LogicaSophia
 
-**LogicaSophia — standalone Linux AI with local Qwen-compatible inference, original evidence-governed agent execution, independently checked file integrity, durable audit records and a dedicated GUI. Built by I2PS Engineering.**
+**Built by I2PS Engineering.**
 
-For how the AI works and what this public package-only repository does, see [Repository Description](docs/REPOSITORY_DESCRIPTION.md).
+LogicaSophia is a standalone Linux AI engineering application combining local Qwen-compatible inference, an independently developed evidence-governed agent controller, a scoped read-only tool system, verifiable source observations, durable audit records and a graphical console.
 
-**Built by I2PS Engineering.**  
-Independent, local-first AI engineering system. Proprietary package distribution; free for authorized noncommercial use.
+> **Release 0.4.1 — Stable Package · Ubuntu x86-64 · October 29, 2026**
+>
+> Application and GUI code passed 40 local automated tests and packaged startup checks. The real Qwen inference task and throughput on the intended Ubuntu i5 machine remain **unverified**. Stable describes the tested package/code baseline, not verified reasoning performance or general autonomy.
 
-> **Release · 0.4.1 Stable Code Baseline (October 29, 2026) — Package only**  
-> A working application foundation with a genuine local-model interface, an evidence-governed agent controller, a browser-based GUI, and an explicit Qwen model deployment option. Agent/GUI behavior is covered by local automated tests; **real Qwen inference performance and tool-use reliability on the intended Ubuntu i5 have not yet been field-verified.** LogicaSophia is an AI *application* built around independently obtained foundation models. It is not a newly trained foundation model or a claim of artificial general intelligence.
+**Distribution:** Official packaged application only, free for permitted noncommercial use under [LICENSE.md](LICENSE.md). Proprietary I2PS-owned source is not part of this release. External inference engines and model weights retain their own licenses.
+
+[Architecture and operation](#3-system-architecture) · [Installation](#4-one-file-ubuntu-deployment-model--gui--agent) · [Verification](#5-verification-telemetry-and-auditability) · [Interface capture](#9-interface-capture) · [Licensing](#10-product-boundaries-and-licensing)
 
 ![Approved LogicaSophia original gold identity](assets/identity.jpeg)
 
@@ -20,7 +22,7 @@ LogicaSophia is a standalone Linux-first **agentic AI engineering application**.
 
 Our research objective is **evidence-governed machine assistance**: reduce the gap between *a model claiming that it performed a task* and *an engineering system showing observable evidence that an action happened*. This is a design hypothesis requiring benchmark comparisons, not a proven superiority claim.
 
-The project is **not** a reskin of another assistant. OpenClaw and Claude-Code-shaped public agent frameworks are technical references for design comparisons. Their agent implementations, and any leaked proprietary source, are **not bundled or represented as I2PS Engineering code**. The local foundation model, inference runtime, and their licenses are independently identifiable components.
+LogicaSophia's engineering contribution is its controller, task-state machine, bounded model-to-tool protocol, authorization checks, evidence verifier, task ledger and GUI. The model weights and inference backend are independently licensed dependencies; they are identified separately and are not claimed as I2PS-developed foundation models.
 
 ## 2. What the AI actually does today
 
@@ -188,15 +190,15 @@ The internal engineering test suite passed 40 local tests, using a simulated mod
 
 Unit and GUI integration tests use a **simulated local model server**. A green test run confirms code-level contracts, not the language reasoning quality of Qwen. First-machine qualification requires a genuinely loaded model, at least one observed file read, an accepted audit replay and manual review of answer correctness.
 
-The issued package includes this complete technical README, binary-use license, authorship notice, machine-checkable SHA-256 manifest, and one provenance-labeled offline GUI capture. The retired simulated-task and stylized README screenshots are not distributed. Internal proprietary source and development files are not part of the package.
+The package includes the complete technical README, noncommercial binary-use license, I2PS Engineering authorship notice, machine-checkable checksums and an on-machine GUI screenshot helper. Proprietary LogicaSophia source and internal development files are not included.
 
-## 9. GUI and README snapshots
+## 9. Interface capture
 
-**Screenshot accuracy:** The earlier four-image collection is deprecated as release evidence. Those views included simulated task execution and stylized README renders; they are not evidence of actual Qwen inference or a live GitHub README screenshot. The current verified preview shows the packaged UI with its model backend **offline** and preserves the original approved artwork. Real Qwen screenshots require actual field execution plus corresponding audit records. The current ZIP includes `Capture_Actual_GUI_Screenshot.txt`, a Bash helper to capture the actual running GUI and accompanying `/api/status` data on an Ubuntu machine; see [Screenshot Evidence](docs/SCREENSHOT_EVIDENCE.md). See [Screenshot Evidence](docs/SCREENSHOT_EVIDENCE.md).
+The package includes the original approved LogicaSophia artwork. The GUI shows the selected local model, authorized workspace, task prompt, execution trace, file evidence and verification state.
 
-![Actual LogicaSophia packaged GUI assets rendered with observed offline model status — not a direct live-site capture or Qwen task](assets/gui-offline-package-render.png)
+**A real GUI capture must come from the running application.** On Ubuntu, launch LogicaSophia, then execute the included `Capture_Actual_GUI_Screenshot.txt` helper. It saves a browser screenshot, the current `/api/status` response and capture checksums. See [GUI Capture and Evidence](docs/SCREENSHOT_EVIDENCE.md).
 
-*Documented offline presentation render: original package HTML/CSS/JPEG and an offline state observed through the running application. This environment blocked direct localhost browser navigation; **not a direct live-site screenshot, not simulated task results and not a real Qwen inference test**. PNG SHA-256: `35fb369465219df88ed28ce9eb3fb763e8d8f75b8b008f43a196d1ab7e759739`. See [capture evidence](docs/SCREENSHOT_EVIDENCE.md).*
+No Qwen task screenshot is included in this release because the first live Qwen run on the designated i5 host has not yet been measured. Any future inference screenshot will be linked to its real model ID, `outcome.json` and `trace.jsonl`.
 
 ## 10. Product boundaries and licensing
 
