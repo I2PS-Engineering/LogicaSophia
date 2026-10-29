@@ -1,4 +1,5 @@
 import http.client
+import hashlib
 import json
 import tempfile
 import threading
@@ -50,10 +51,11 @@ class GUIIntegrationTests(unittest.TestCase):
         self.assertIn(self.server.token,raw.decode())
         self.assertIn('text/html',typ)
     def test_approved_artwork_served(self):
-        code,raw,typ=self.request('GET','/assets/identity.webp')
+        code,raw,typ=self.request('GET','/assets/identity.jpeg')
         self.assertEqual(code,200)
-        self.assertTrue(raw.startswith(b'RIFF'))
-        self.assertEqual(raw,(STATIC/'identity.webp').read_bytes())
+        self.assertTrue(raw.startswith(b'\xff\xd8\xff'))
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), '03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39')
+        self.assertEqual(raw,(STATIC/'identity.jpeg').read_bytes())
     def test_api_status_models(self):
         code,raw,_=self.request('GET','/api/status')
         data=json.loads(raw)
