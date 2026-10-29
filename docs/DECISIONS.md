@@ -23,3 +23,7 @@
 ## LS-006 — Local networking
 
 **Accepted:** Bind the unauthenticated API to localhost only and reject remote inference-backend URLs. No secrets or weights in Git.
+
+## LS-007 — Milestone 1: Standalone Linux hardware qualification (2026-10-29)
+
+**Accepted:** One non-invasive Python command on any available Linux host, producing a local JSON qualification report. No privilege escalation, software installation, model runtime or Atlas Nexus integration. Device and network identification details must not be included in the report. Hardware fitness cannot be claimed until measured against a selected model and quantization.
