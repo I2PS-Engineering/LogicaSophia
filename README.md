@@ -7,8 +7,18 @@
 
 LogicaSophia is an I2PS Engineering application for **engineering analysis, online research, real PNG/PDF deliverables, creative image workflows, and approved speech/narration**. The system uses an original evidence-governed task controller and replaceable inference interfaces.
 
-> **Current engineering release: 0.8.1 — Connected Engineering Preview · October 29, 2026.**  
-> 104 local tests passed; packaged CLI, consent controls and PDF export checked. Online provider tests used mocked HTTP, so live search on the designated Ubuntu i5 is not yet field-qualified. Qt window operation, actual diffusion image generation and Kokoro audio remain pending field validation. This is not a production-ready general autonomous AI or newly trained foundation model.
+> **Current engineering release: 0.8.2 — Connected Engineering Preview · October 29, 2026.**  
+> 113 local tests passed; packaged CLI, consent controls, PDF export and microphone-transcription logic checked. Online provider tests used mocked HTTP, so live search on the designated Ubuntu i5 is not yet field-qualified. Qt window operation, actual diffusion image generation, microphone capture, real speech recognition and Kokoro playback remain pending field validation. This is not a production-ready general autonomous AI or newly trained foundation model.
+
+## Voice conversation in Assistant
+
+**Text-to-speech is a small speaker icon beside each displayed assistant answer**, rather than a separate long-form audio job. Click it to synthesize and play the answer in the approved Lexia/Kokoro voice; click again to stop.
+
+**Voice input is a microphone icon beside the engineering task field.** Click once to record a short voice message, click again to stop. A separately licensed multilingual speech recognizer transcribes the recording locally. The words appear in the task field for inspection or correction; **nothing is sent to the agent automatically**. Initial installation of speech models needs an Internet connection, but recorded voice is not uploaded to an external speech API.
+
+The original **Narration Studio** remains under Create for scene-by-scene narration, pronunciation approval and synchronized subtitle outputs. Conversation playback does not change its approved Lexia settings.
+
+**Qualification:** Microphone/audio widgets are implemented, and 9 additional controlled transcription tests pass, but GUI audio, actual speech recognition and real Lexia playback on Ubuntu require field testing. See [Voice Conversation](docs/VOICE_CONVERSATION.md).
 
 ## Internet connection and intelligence
 
@@ -93,4 +103,4 @@ The application records **what was actually read or generated**. File-integrity 
 
 The I2PS application uses [proprietary noncommercial package licensing](LICENSE.md). Source files are not distributed in the current public branch or package. Third-party models, runtimes, search services and libraries retain their own licenses and terms. This is **not OSI open source**.
 
-**Engineering release details:** [v0.8.1](docs/RELEASE_0.8.1.md). Hardware-specific live web, Qt, Kokoro and diffusion checks remain open before a full public stable qualification.
+**Engineering release details:** [v0.8.2](docs/RELEASE_0.8.2.md). Hardware-specific live web, Qt, Kokoro and diffusion checks remain open before a full public stable qualification.
