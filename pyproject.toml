@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logicasophia"
+version = "0.2.0"
+description = "LogicaSophia independent local-first AI gateway"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+logicasophia = "logicasophia.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
