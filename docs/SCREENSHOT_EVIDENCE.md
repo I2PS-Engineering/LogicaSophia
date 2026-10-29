@@ -28,3 +28,7 @@ For the full product details, see the [README](../README.md). For the repository
 - Approved artwork SHA-256: `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`.
 
 **Provenance limitation:** This browser rendering is based on exact package assets and observed offline API state, but was not obtained by direct Chromium navigation to the local server. It is not evidence of a Qwen execution.
+
+## Capture an actual GUI screenshot on the target Ubuntu host
+
+The **final** v0.4.1 ZIP contains `Capture_Actual_GUI_Screenshot.txt`. After the packaged application starts and the local GUI responds on `127.0.0.1:8766`, run `bash Capture_Actual_GUI_Screenshot.txt` in the extracted package folder. With Chromium or Chrome installed, this makes a genuine on-machine browser PNG, saves the actual `GET /api/status` JSON, and writes a SHA-256 capture record in the user's home folder. Capture metadata identifies the backend state; it does not fabricate a model response. A claim about a Qwen task also requires its `outcome.json` and `trace.jsonl` evidence. If no suitable browser is available, the helper exits with a clear instruction to capture the GUI manually; it does not substitute a synthetic image.

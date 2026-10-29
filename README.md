@@ -192,7 +192,7 @@ The issued package includes this complete technical README, binary-use license, 
 
 ## 9. GUI and README snapshots
 
-**Screenshot accuracy:** The earlier four-image collection is deprecated as release evidence. Those views included simulated task execution and stylized README renders; they are not evidence of actual Qwen inference or a live GitHub README screenshot. The current verified preview shows the packaged UI with its model backend **offline** and preserves the original approved artwork. Real Qwen screenshots require actual field execution plus corresponding audit records. See [Screenshot Evidence](docs/SCREENSHOT_EVIDENCE.md).
+**Screenshot accuracy:** The earlier four-image collection is deprecated as release evidence. Those views included simulated task execution and stylized README renders; they are not evidence of actual Qwen inference or a live GitHub README screenshot. The current verified preview shows the packaged UI with its model backend **offline** and preserves the original approved artwork. Real Qwen screenshots require actual field execution plus corresponding audit records. The current ZIP includes `Capture_Actual_GUI_Screenshot.txt`, a Bash helper to capture the actual running GUI and accompanying `/api/status` data on an Ubuntu machine; see [Screenshot Evidence](docs/SCREENSHOT_EVIDENCE.md). See [Screenshot Evidence](docs/SCREENSHOT_EVIDENCE.md).
 
 ![Actual LogicaSophia packaged GUI assets rendered with observed offline model status — not a direct live-site capture or Qwen task](assets/gui-offline-package-render.png)
 
