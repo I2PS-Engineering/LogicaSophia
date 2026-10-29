@@ -22,3 +22,6 @@ data/
 datasets/
 logs/
 .DS_Store
+
+# Local hardware qualification reports
+logicasophia_hardware*.json
