@@ -16,7 +16,7 @@ if [[ "$(uname -s)" != "Linux" ]]; then echo 'Linux is required' >&2; exit 1; fi
 if ! command -v python3 >/dev/null; then echo 'Python 3 is required' >&2; exit 1; fi
 
 echo '=== LogicaSophia standalone: install + local AI agent ==='
-if ! command -v git >/dev/null || ! command -v cmake >/dev/null || ! command -v g++ >/dev/null || ! command -v curl >/dev/null; then
+if ! command -v git >/dev/null || ! command -v cmake >/dev/null || ! command -v g++ >/dev/null || ! command -v curl >/dev/null || ! dpkg-query -W -f='${Status}' libcurl4-openssl-dev 2>/dev/null | grep -q 'install ok installed'; then
   echo 'Installing build dependencies (Ubuntu). This may ask for your sudo password.'
   sudo apt-get update
   sudo apt-get install -y git cmake build-essential libcurl4-openssl-dev libssl-dev curl ca-certificates
@@ -24,7 +24,11 @@ fi
 if [[ ! -d "$PROJECT/.git" ]]; then
   git clone "$PROJECT_URL" "$PROJECT"
 else
-  # Only fast-forward a clean working tree. Never reset/rewrite user changes.
+  # Only fast-forward clean main. Never reset/rewrite user changes.
+  if [[ "$(git -C "$PROJECT" branch --show-current)" != "main" ]]; then
+    echo "Switch your LogicaSophia checkout to main before running the launcher." >&2
+    exit 1
+  fi
   if ! git -C "$PROJECT" diff --quiet || ! git -C "$PROJECT" diff --cached --quiet; then
     echo 'Local changes found in LogicaSophia. Review them and update manually.' >&2
     exit 1
