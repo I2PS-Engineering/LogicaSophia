@@ -3,8 +3,8 @@
 **LogicaSophia — Built by I2PS Engineering**  
 **October 29, 2026 · Linux x86-64**
 
-**Official application archive:** \`LogicaSophia_0.8.2_Voice_Conversation_Package.zip\`  
-**SHA-256:** \`c6835ff6387fff0aaff032a0a763127d4fd8fc5fa6cdaff61fa8dc498ab3ba50\`
+**Official application archive:** `LogicaSophia_0.8.2_Voice_Conversation_Package.zip`  
+**SHA-256:** `c6835ff6387fff0aaff032a0a763127d4fd8fc5fa6cdaff61fa8dc498ab3ba50`
 
 This repository provides public product documentation and the approved original identity; the proprietary application ZIP is distributed separately through I2PS Engineering.
 
