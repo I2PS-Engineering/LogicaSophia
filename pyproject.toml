@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "logicasophia"
-version = "0.3.0"
+version = "0.4.0"
 description = "LogicaSophia standalone evidence-governed AI engineering agent"
 requires-python = ">=3.10"
 dependencies = []
@@ -14,3 +14,6 @@ logicasophia = "logicasophia.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+logicasophia = ["web/*.html", "web/*.css", "web/*.js", "web/*.webp"]

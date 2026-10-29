@@ -27,3 +27,11 @@
 ## LS-007 — Milestone 1: Standalone Linux hardware qualification (2026-10-29)
 
 **Accepted:** One non-invasive Python command on any available Linux host, producing a local JSON qualification report. No privilege escalation, software installation, model runtime or Atlas Nexus integration. Device and network identification details must not be included in the report. Hardware fitness cannot be claimed until measured against a selected model and quantization.
+
+## LS-008 — Model and interface policy (2026-10-29)
+
+**Accepted:** Build a standalone gold-on-black LogicaSophia GUI using the user-approved artwork. Use a licensed local Qwen model as the default experimental inference backend while keeping the model interface replaceable. Display real task actions, file observations, verification outcomes and audit records in the GUI.
+
+## LS-009 — Original engineering and accurate project claims (2026-10-29)
+
+**Accepted:** Maintain a complete technical README describing the AI application, implementation, model relationship, safety boundaries and research roadmap. Do not claim foundation model authorship, copy third-party agent code, or represent source-integrity checks as verified reasoning. OpenClaw and public Claude-Code-shaped implementations remain comparative architecture references only.

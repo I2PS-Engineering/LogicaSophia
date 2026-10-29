@@ -10,6 +10,7 @@ import json
 import time
 import uuid
 from pathlib import Path
+from typing import Callable
 
 from .backend import BackendError, LocalBackend
 from .core.contracts import valid_path
@@ -103,7 +104,8 @@ def select_model(backend: LocalBackend, requested: str | None) -> str:
 
 
 def run_agent(goal: str, workspace: Path, results: Path, backend: LocalBackend,
-              *, model: str | None = None, max_steps: int = 6, timeout: int = 180) -> dict:
+              *, model: str | None = None, max_steps: int = 6, timeout: int = 180,
+              event_sink: Callable[[dict], None] | None = None) -> dict:
     if not isinstance(goal, str) or not (1 <= len(goal) <= MAX_GOAL):
         raise ValueError('invalid_goal')
     if not (1 <= max_steps <= 8) or not (5 <= timeout <= 600):
@@ -128,6 +130,14 @@ def run_agent(goal: str, workspace: Path, results: Path, backend: LocalBackend,
     started = time.monotonic()
     integrity = []
 
+    def emit(event: dict) -> None:
+        if event_sink is not None:
+            try:
+                event_sink(event)
+            except Exception:
+                # An observability subscriber cannot alter execution outcome.
+                pass
+
     def go(target: str):
         nonlocal state
         if state is None:
@@ -137,6 +147,7 @@ def run_agent(goal: str, workspace: Path, results: Path, backend: LocalBackend,
             transition(state, target)
         state = target
         ledger.append(state, 'transition', {})
+        emit({'type': 'state', 'state': state})
 
     try:
         go('RECEIVED')
@@ -166,6 +177,7 @@ def run_agent(goal: str, workspace: Path, results: Path, backend: LocalBackend,
                     ledger.append(state, 'model_error', {'reason': failure})
                     break
                 action = decision['action']
+                emit({'type': 'decision', 'action': action, 'path': decision.get('path')})
                 if action == 'final':
                     answer = decision['answer'].strip()
                     ledger.append(state, 'model_final', {'sha256': hashlib.sha256(answer.encode()).hexdigest(),
@@ -193,6 +205,7 @@ def run_agent(goal: str, workspace: Path, results: Path, backend: LocalBackend,
                         tool_reply = {'observation': proof}
                     observations.append(proof)
                     ledger.append(state, 'observation', proof)
+                    emit({'type': 'evidence', 'action': action, 'path': proof.get('path'), 'sha256': proof.get('sha256')})
                 except ObservationError as exc:
                     tool_reply = {'error': exc.code, 'action': action, 'path': decision['path']}
                     ledger.append(state, 'tool_error', tool_reply)
@@ -217,6 +230,7 @@ def run_agent(goal: str, workspace: Path, results: Path, backend: LocalBackend,
                 integrity.append({'path': proof['path'], 'stable': passed})
             ledger.append(state, 'verification', {'read_file_integrity': integrity,
                 'scope': 'source_bytes_only_not_answer_truth'})
+            emit({'type': 'verification', 'result': 'stable' if all(p['stable'] for p in integrity) else 'changed'})
             if failure:
                 go('FAILED')
             elif not observations or not any(p.get('action') == 'read_file' for p in observations):

@@ -18,6 +18,12 @@ def main() -> None:
     server = commands.add_parser('serve', help='Start the localhost HTTP gateway')
     server.add_argument('--port', type=int, default=8765)
     server.add_argument('--backend-url', help='LOCAL OpenAI-compatible inference server')
+    gui = commands.add_parser('gui', help='Launch standalone gold-on-black local browser UI')
+    gui.add_argument('--port', type=int, default=8766)
+    gui.add_argument('--backend-url', default='http://127.0.0.1:8090')
+    gui.add_argument('--workspace', type=Path, default=Path('fixtures/project_fixture'))
+    gui.add_argument('--results', type=Path, default=Path.home() / '.local/share/logicasophia/results')
+    gui.add_argument('--no-browser', action='store_true')
     agent = commands.add_parser('agent', help='Run autonomous, evidence-governed workspace analysis')
     agent.add_argument('--goal', required=True, help='What LogicaSophia should analyze')
     agent.add_argument('--workspace', type=Path, default=Path('.'))
@@ -37,6 +43,13 @@ def main() -> None:
         except ValueError as exc:
             parser.error(str(exc))
         serve(port=args.port, backend=backend)
+    elif args.command == 'gui':
+        from .gui import launch_gui
+        try:
+            launch_gui(args.port, args.backend_url, args.workspace, args.results,
+                       open_browser=not args.no_browser)
+        except (OSError, ValueError) as exc:
+            parser.error(str(exc))
     else:
         from .agent import run_agent
         try:
