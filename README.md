@@ -1,6 +1,6 @@
 # LogicaSophia
 
-**Repository description:** LogicaSophia is a standalone Linux AI engineering system combining locally hosted Qwen-compatible inference, an original evidence-governed agent controller, scoped read-only tools, independently checked file evidence, durable audit records and a graphical console. **Built by I2PS Engineering.**
+**LogicaSophia — standalone Linux AI with local Qwen-compatible inference, original evidence-governed agent execution, independently checked file integrity, durable audit records and a dedicated GUI. Built by I2PS Engineering.**
 
 For how the AI works and what this public package-only repository does, see [Repository Description](docs/REPOSITORY_DESCRIPTION.md).
 
@@ -188,18 +188,18 @@ The internal engineering test suite passed 40 local tests, using a simulated mod
 
 Unit and GUI integration tests use a **simulated local model server**. A green test run confirms code-level contracts, not the language reasoning quality of Qwen. First-machine qualification requires a genuinely loaded model, at least one observed file read, an accepted audit replay and manual review of answer correctness.
 
-The issued package includes this complete technical README, binary-use license, authorship notice, machine-checkable SHA-256 manifest, and GUI/README snapshots. Internal proprietary source and development files are not part of the package.
+The issued package includes this complete technical README, binary-use license, authorship notice, machine-checkable SHA-256 manifest, and one provenance-labeled offline GUI capture. The retired simulated-task and stylized README screenshots are not distributed. Internal proprietary source and development files are not part of the package.
 
 ## 9. GUI and README snapshots
 
 **Screenshot accuracy:** The earlier four-image collection is deprecated as release evidence. Those views included simulated task execution and stylized README renders; they are not evidence of actual Qwen inference or a live GitHub README screenshot. The current verified preview shows the packaged UI with its model backend **offline** and preserves the original approved artwork. Real Qwen screenshots require actual field execution plus corresponding audit records. See [Screenshot Evidence](docs/SCREENSHOT_EVIDENCE.md).
 
-![LogicaSophia v0.4.1 package-asset render with actual offline backend status — not a live Qwen screenshot](assets/gui-offline-package-render.png)
+![Actual LogicaSophia packaged GUI assets rendered with observed offline model status — not a direct live-site capture or Qwen task](assets/gui-offline-package-render.png)
 
-*Offline preview derived from unchanged packaged HTML, CSS and original artwork. The backend status came from the running package; browser navigation itself was blocked, so this is a documented reconstruction of the offline UI, not a direct live-browser capture or a fabricated AI run.*
+*Documented offline presentation render: original package HTML/CSS/JPEG and an offline state observed through the running application. This environment blocked direct localhost browser navigation; **not a direct live-site screenshot, not simulated task results and not a real Qwen inference test**. PNG SHA-256: `35fb369465219df88ed28ce9eb3fb763e8d8f75b8b008f43a196d1ab7e759739`. See [capture evidence](docs/SCREENSHOT_EVIDENCE.md).*
 
 ## 10. Product boundaries and licensing
 
-**I2PS Engineering** maintains this LogicaSophia application and its original controller/GUI implementation. The external inference runtime and selected models have **their own copyright and licensing terms**, which must remain intact. The I2PS-owned application is distributed only as a **proprietary package**, free for permitted noncommercial use under [LICENSE.md](LICENSE.md), with authorship and third-party notices in [COPYRIGHT.md](COPYRIGHT.md). **No I2PS source code is included in the current public branch or the issued package.** Earlier public Git history remains accessible unless repository visibility is changed; deleting current files does not erase historical commits. Commercial exploitation requires separate written permission. This is **not OSI open source**.
+**I2PS Engineering** maintains this LogicaSophia application and its original controller/GUI implementation. The external inference runtime and selected models have **their own copyright and licensing terms**, which must remain intact. The I2PS-owned application is distributed only as a **proprietary package**, free for permitted noncommercial use under [LICENSE.md](LICENSE.md), with authorship and third-party notices in [COPYRIGHT.md](COPYRIGHT.md). **No I2PS source code is included in the current public branch or the issued package.** Earlier public commits and development branches remain accessible even though the current branch has no I2PS application source. Deleting current files does not erase historical commits; this release does not claim that older published source has been made inaccessible. Commercial exploitation requires separate written permission. This is **not OSI open source**.
 
 This project is created independently for engineering research and progressive autonomous AI development. It makes **no ownership claim** over leaked source, public model weights, or third-party architectures, and it claims no proven performance advantage until the measurements and tests support one.

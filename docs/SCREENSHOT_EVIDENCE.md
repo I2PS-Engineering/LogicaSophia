@@ -13,10 +13,18 @@ The former four-image preview set is **deprecated as release evidence**. Generic
 - No Qwen computation or successful model-directed task is claimed from this capture.
 - Original approved artwork SHA-256: `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`.
 
-The prior simulated task and stylized README screenshots have been removed from the corrected distribution. The package contains `Capture_Actual_GUI_Screenshot.txt` to capture the real interface on the user's Linux host.
+The prior simulated task and stylized README screenshots are excluded from the corrected package. The current README links only to the offline package-asset render. The package contains `Capture_Actual_GUI_Screenshot.txt` to capture the real interface on the user's Linux host.
 
 ## Future real Qwen snapshots
 
 A screenshot can only be labeled as actual Qwen execution when it is linked to the model identifier, Linux host test, real `outcome.json`, and source-evidence trace. Captures must preserve their actual text and measurements. A UI screenshot is presentation evidence, not proof of reasoning correctness.
 
 For the full product details, see the [README](../README.md). For the repository architecture, see [Repository Description](REPOSITORY_DESCRIPTION.md).
+
+## File integrity
+
+- Public GUI render SHA-256: `35fb369465219df88ed28ce9eb3fb763e8d8f75b8b008f43a196d1ab7e759739` (Git blob `df8ff0e167e91df5a70c3b2f8b2d18d20360db84`).
+- Updated documentation-only package SHA-256: `44813299e13eb418931d2bffce12e52e3e2ba9f41537e4b21de0294a1616c15a`.
+- Approved artwork SHA-256: `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`.
+
+**Provenance limitation:** This browser rendering is based on exact package assets and observed offline API state, but was not obtained by direct Chromium navigation to the local server. It is not evidence of a Qwen execution.

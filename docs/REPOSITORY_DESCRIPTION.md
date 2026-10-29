@@ -2,7 +2,7 @@
 
 **Built by I2PS Engineering.**
 
-**Suggested GitHub About description:** LogicaSophia — standalone Linux AI with local Qwen inference, controlled agent execution, verified file evidence and an auditable GUI. Built by I2PS Engineering.
+**GitHub About description (proposed):** Standalone Linux AI with local Qwen inference, evidence-governed agent execution, auditable results and a GUI. Built by I2PS Engineering.
 
 ## What this repository represents
 
@@ -30,3 +30,7 @@ Do not use generic AI illustrations as LogicaSophia interface screenshots. The p
 - The package is proprietary, free for authorized noncommercial use; the public repository remains public.
 - Source rights, model weights and third-party runtime licenses remain separate.
 - **Built by I2PS Engineering**; no AI company or assistant is identified as software author or co-author.
+
+## Repository About-field status
+
+The public GitHub About description remains a separate repository setting. Its text is documented above, but the connected GitHub integration currently does not expose an action to update that metadata field. Adding the text to this document or the README does not automatically populate GitHub About.
