@@ -1,0 +1,53 @@
+name: Prune obsolete development branches
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  prune:
+    if: github.repository == 'I2PS-Engineering/LogicaSophia'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Remove old branch references
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          failures=0
+          branches=(
+            'docs/accurate-package-evidence-041'
+            'docs/final-capture-helper-package-v041'
+            'docs/logicasophia-repository-description'
+            'docs/public-repo-description-real-screenshots'
+            'feature/evidence-governed-phase-a'
+            'feature/gui-qwen-comprehensive-readme'
+            'feature/m1-linux-qualification'
+            'feature/package-only-stable-cleanup'
+            'fix/restore-approved-logicasophia-artwork'
+            'maintenance/clean-public-release-v041'
+          )
+          for branch in "${branches[@]}"; do
+            if ! gh api "repos/${GH_REPO}/git/ref/heads/${branch}" >/dev/null 2>&1; then
+              echo "Already absent: $branch"
+              continue
+            fi
+            if gh api --method DELETE "repos/${GH_REPO}/git/refs/heads/${branch}"; then
+              echo "Deleted obsolete branch: $branch"
+            else
+              echo "Could not delete branch: $branch" >&2
+              failures=$((failures+1))
+            fi
+          done
+          if [[ "$failures" -ne 0 ]]; then
+            echo "Some obsolete branches remain ($failures)." >&2
+            exit 1
+          fi
+          echo 'Obsolete branch cleanup completed. Main and historical commits untouched.'
