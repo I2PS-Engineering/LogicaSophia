@@ -1,207 +1,136 @@
 # LogicaSophia
 
-**Built by I2PS Engineering.**
+**Built by I2PS Engineering.**  
+**Independent AI engineering platform · Linux-first · Proprietary noncommercial package distribution**
 
-LogicaSophia is a standalone Linux AI engineering application combining local Qwen-compatible inference, an independently developed evidence-governed agent controller, a scoped read-only tool system, verifiable source observations, durable audit records and a graphical console.
+![Original approved LogicaSophia identity](assets/identity.jpeg)
 
-> **Release 0.4.1 — Stable Package · Ubuntu x86-64 · October 29, 2026**
->
-> Application and GUI code passed 40 local automated tests and packaged startup checks. The real Qwen inference task and throughput on the intended Ubuntu i5 machine remain **unverified**. Stable describes the tested package/code baseline, not verified reasoning performance or general autonomy.
+LogicaSophia is an independently engineered agentic AI application for **engineering analysis, technical documents, image and speech workflows, and evidence-governed task execution**. It combines an original I2PS task controller with a replaceable inference interface and real file-generation tools. It is designed to grow into a more capable autonomous engineering system without making any external foundation-model vendor the identity of the project.
 
-**Distribution:** Official packaged application only, free for permitted noncommercial use under [LICENSE.md](LICENSE.md). Proprietary I2PS-owned source is not part of this release. External inference engines and model weights retain their own licenses.
+> **Current release: v0.7.0 — Private Engineering Preview · October 29, 2026.** The packaged analysis and engineering-deliverable paths have passed **79 local automated tests**. Real Qt visual interaction, Kokoro audio synthesis and diffusion-image generation on the designated Ubuntu i5 have **not** been field-verified. This is an engineering preview, not a fully qualified production AI or an independently trained foundation model.
 
-[Architecture and operation](#3-system-architecture) · [Installation](#4-one-file-ubuntu-deployment-model--gui--agent) · [Verification](#5-verification-telemetry-and-auditability) · [Interface capture](#9-interface-capture) · [Licensing](#10-product-boundaries-and-licensing)
+## What makes LogicaSophia different
 
-![Approved LogicaSophia original gold identity](assets/identity.jpeg)
+The central contribution is the **I2PS-controlled engineering workflow**: task routing, explicit authorization, bounded tools, source observations, integrity checks, output manifests, and a readable action record. A user should be able to request a deliverable, see which inputs and methods were used, and inspect the actual output instead of trusting a confident but unsupported claim.
 
-**Visual identity:** `assets/identity.jpeg` is the exact, original user-approved artwork (SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`), served unmodified. No substitutions, recoloring, recompression or replacement artwork without explicit authorization.
+**Model neutrality is a design constraint.** The native default is a limited deterministic analyzer and engineering tool dispatcher. An external language model can be connected deliberately; **Qwen is neither required nor the default architecture**. External weights and runtimes remain separately licensed. LogicaSophia does not claim to have trained a new general-purpose foundation model.
 
-## 1. What LogicaSophia is
+## What the current application can do
 
-LogicaSophia is a standalone Linux-first **agentic AI engineering application**. It combines a replaceable language-model inference backend with our own execution-control software. The model interprets an engineering instruction and proposes the next step. LogicaSophia's host-side controller decides whether that step is authorized, carries it out using narrowly defined tools, obtains evidence, and independently checks whether the observed source data remained intact. It then makes the result available through a graphical user interface and persistent audit records.
-
-Our research objective is **evidence-governed machine assistance**: reduce the gap between *a model claiming that it performed a task* and *an engineering system showing observable evidence that an action happened*. This is a design hypothesis requiring benchmark comparisons, not a proven superiority claim.
-
-LogicaSophia's engineering contribution is its controller, task-state machine, bounded model-to-tool protocol, authorization checks, evidence verifier, task ledger and GUI. The model weights and inference backend are independently licensed dependencies; they are identified separately and are not claimed as I2PS-developed foundation models.
-
-## 2. What the AI actually does today
-
-The 0.4.1 package supports the following locally controlled workflow:
-
-1. Start a locally hosted, licensed foundation model using an OpenAI-compatible inference server (the launcher defaults to **Qwen3-1.7B Q4_K_M**, CPU mode, to match our initial 7.1 GiB RAM Linux qualification host).
-2. Open the **LogicaSophia GUI** on `http://127.0.0.1:8766`. It displays the approved gold identity, backend status, model selector, workspace, task prompt, execution trace and result.
-3. Submit a bounded **engineering task**, such as explaining a function or examining a project file.
-4. The model first receives the authorized task and a manifest of visible **filenames** in the selected workspace. It must **request file content** through an allowed tool to read source bytes.
-5. The host validates the request and executes only the `read_file` and `search_files` tools inside the configured workspace.
-6. The agent appends bounded model decisions, tool observations and hashes to a trace; a deterministic verifier checks observed file bytes for changes after the run.
-7. The GUI shows the model's final answer, tool actions, verification status and on-disk audit directory.
-
-**A successful source-integrity check does not prove the AI's reasoning is correct.** For example, a model may read a file correctly and still misunderstand it. The GUI distinguishes this limitation explicitly. We plan subsequent task-specific factual and behavioral verification.
-
-### Current capabilities at a glance
-
-| Area | Working in v0.4.1 | Not yet implemented / not field-verified |
+| Capability | v0.7.0 implementation | Evidence and limits |
 | --- | --- | --- |
-| Inference | OpenAI-compatible **local** backend selection and connection | Real Qwen throughput/tool adherence on target i5 not yet verified |
-| Foundation models | Qwen3-1.7B **installation choice**; alternate SmolLM2 launcher choice | Training/hosting our own base weights, or large model fleet |
-| Agent loop | Model-directed file reading, searching, final answer, bounded steps | Writes, shell tools, web actions, multiple cooperating agents |
-| Policy | Read-only allowlist, path/size/format checks, no arbitrary command execution | General sandbox for untrusted programs and plugins |
-| Verification | File content hashes, source consistency, replayable audit chain | Semantic truth, mathematical correctness or code behavior proof |
-| GUI | Branded localhost dashboard, local model discovery, live task states and evidence | Remote clients, accounts, voice, mobile applications |
-| Memory | Durable task audit ledger on disk | Cross-session semantic memory and retrieval-based knowledge |
-| Distributed compute | None required | Multi-node workloads, failover, GPU scheduling |
+| Engineering source inspection | Native AST-based Python inspection and bounded read-only file tools | Tested locally; not general programming intelligence |
+| Unified engineering requests | Preview and confirm a proposed analysis, artifact, image, speech or narration task | Deterministic routing, not free-form autonomous multi-step reasoning |
+| Measured-data analysis | Read numeric CSV, compute statistics, export actual PNG chart and PDF report | Tested on sample data; results are only as reliable as the input |
+| Architecture visualization | Create PNG/PDF diagrams from explicitly supplied modules and connections | Does not invent undisclosed system architecture |
+| General image generation | Adapter to a locally configured ComfyUI checkpoint | Needs actual image model and runtime; not field-verified |
+| Logo placement | Insert a supplied authentic logo into a generated picture | No replacement/imaginary I2PS logo; visual review still required |
+| Text-to-speech | Lexia adapter for approved Kokoro voice | Installed weights and actual voice test still required |
+| Narration | Pronunciation audit, short test, approval, slide WAVs, timestamps and subtitle export | Long-form rendering requires human approval and verified model |
+| Graphical desktop | Gold/black Qt Studio with **Assistant, Create, Results** | Code integrated; Qt visual field test pending |
+| Local audit | Source hashes, task outcomes, evidence traces and export manifests | Source integrity is not proof of answer correctness |
 
-## 3. System architecture
+The product can generate **real engineering PNG/PDF files** today under tested local conditions. Its text-to-image and Lexia voice adapters are genuine integrations but **not demonstrations of completed field inference**. The request “a skateboarding cat with the I2PS logo on its shirt” needs a configured image model and the real logo file; it must not return a fabricated preview.
 
-```text
-                        LogicaSophia · LOCAL LINUX HOST
-     ┌───────────────────────────────────────────────────────────────┐
-     │ Approved identity · gold-on-black browser UI (127.0.0.1:8766)│
-     │ Workspace context · model status · task input · trace · result│
-     └──────────────────────────────┬────────────────────────────────┘
-                                    │ local task API
-                                    ▼
-     ┌───────────────────────────────────────────────────────────────┐
-     │            Original LogicaSophia agent controller             │
-     │ State machine · goal validation · bounded model decision loop │
-     │        deny-by-default tool policy · task supervision         │
-     └─────────────┬────────────────────────────────┬────────────────┘
-                   │                                │
-          allowed observations                local model calls
-                   │                                │
-                   ▼                                ▼
-     ┌────────────────────────┐    ┌─────────────────────────────────┐
-     │ Scoped, read-only tools│    │ OpenAI-compatible local model API│
-     │ file read · text search│    │ http://127.0.0.1:8090           │
-     │ path & symlink checks  │    │ llama.cpp · Qwen / other model   │
-     └───────────┬────────────┘    └─────────────────────────────────┘
-                 │
-                 ▼
-     ┌───────────────────────────────────────────────────────────────┐
-     │          Independent evidence and verification layer         │
-     │ SHA-256 file evidence · source consistency · trace replay     │
-     │ JSON outcome · hash-linked JSONL events · SQLite audit       │
-     └───────────────────────────────────────────────────────────────┘
-```
+## One task, one controlled workflow
 
-**Separation of responsibilities:** the foundation model proposes a possible step; the Python host validates it. Tools never execute directly because the model wrote a command. Untrusted file contents are passed as task *data*, not high-priority instructions. The audit layer records concrete actions and outcomes instead of trusting fluent model responses.
+1. You enter an engineering or creative instruction in the **Assistant** panel, or select a specific task under **Create**.
+2. The I2PS dispatcher classifies the task against supported operations and shows an inspectable plan, required inputs and missing dependencies.
+3. **Execution requires explicit confirmation.** Unavailable models, missing data or missing logos are reported instead of silently substituted.
+4. Approved local tools execute using scoped input files and generate outputs outside the read workspace.
+5. **Results** exposes real PNG, PDF, WAV, subtitle, JSON, and evidence files as appropriate to the task.
 
-### Runtime and model ownership
+**Example engineering instruction:** `Create an engineering report and chart from measurements.csv`. This reads supplied numeric source data; the example proof is **sample data**, not a claimed benchmark from the user’s hardware.
 
-- **LogicaSophia code:** controller, task state machine, policy, filesystem observations, evidence verifier, local GUI, backend connector, audit ledger and tests.
-- **External inference runtime:** `llama.cpp`, obtained separately from `ggml-org/llama.cpp`. It does not become I2PS Engineering intellectual property by being used as a dependency.
-- **External foundation models:** Qwen3 GGUF or an alternative selectable licensed open-weight model. We do **not** claim the foundation model weights were authored by us.
-- **Reference research:** OpenClaw and public agent harnesses may inform comparative studies; no proprietary leaked code is bundled.
+**Example architecture instruction:** `Architecture: Sensor -> Controller -> Audit`. Only these explicitly supplied components and connections are drawn.
 
-## 4. One-file Ubuntu deployment: model + GUI + agent
+**Example creative instruction:** `Make a picture of a cat skateboarding with the I2PS logo on its shirt`. This requires a real local diffusion checkpoint and the user-provided logo.
 
-**Target qualification machine:** Intel Core i5-6500T (4 cores / 4 threads), Ubuntu 26.10, approximately 7.1 GiB usable RAM, Intel HD 530 and ~211 GiB free disk. These are one test host's measurements, **not** hardcoded requirements for LogicaSophia.
+**Example narration script:**
+~~~text
+SLIDE 01 — INTRODUCTION
+Welcome to the I2PS Engineering laboratory.
 
-Extract the I2PS-issued binary package on the Linux machine, open a terminal in the extracted folder, and run the included launch script:
+SLIDE 02 — RESULTS
+Here are the measurements collected during the experiment.
+~~~
+The script is audited for pronunciation before any authorized long render.
 
-```bash
-bash LogicaSophia_Start_AI.txt
-```
+## Installation and first use
 
-The launcher uses the bundled precompiled LogicaSophia application and Python runtime, performs an intentional one-time Ubuntu `apt` setup (with your authorization), and builds the independently licensed local inference backend and downloads **Qwen3-1.7B GGUF Q4_K_M** if not cached. It then starts the model on **127.0.0.1:8090** and opens the LogicaSophia UI on **127.0.0.1:8766**.
+The v0.7.0 engineering package is a **separate, source-free ZIP delivered by I2PS Engineering**, not a source checkout of this public repository. Extract it on an **Ubuntu x86-64** computer. From inside the extracted package directory:
 
-The model download needs internet on first use. All inference remains on the local machine afterward. The launcher uses a conservative four CPU threads and does not perform GPU offloading. It does not install or connect Atlas Nexus.
+~~~bash
+# Installs optional Qt, engineering document, and Lexia dependencies;
+# downloads and verifies the approved Kokoro model files.
+bash LogicaSophia_Setup_Lexia_And_Studio.txt
 
-**Alternative comparison model**, chosen explicitly rather than silently:
+# Launch the desktop interface.
+bash LogicaSophia_Start_AI.txt qt
+~~~
 
-```bash
-bash LogicaSophia_Start_AI.txt smol
-```
+To use the native, no-vendor-required engine in the terminal:
 
-The default is `qwen`. **If a model server is already running on port 8090**, the launcher reuses that server and does not replace its loaded model. Exit the previous server to switch models.
+~~~bash
+bash LogicaSophia_Start_AI.txt native
+~~~
 
-### Direct commands after installation
+To preview and then authorize a real measured-data deliverable:
 
-```bash
-cd /path/to/extracted/LogicaSophia_0.4.1_Stable_Ubuntu_amd64
-bash LogicaSophia_Run.txt gui --workspace "$PWD/workspace" \
-  --backend-url http://127.0.0.1:8090
-```
+~~~bash
+bash LogicaSophia_Start_AI.txt work --goal 'Create chart and report from measurements.csv'
+bash LogicaSophia_Start_AI.txt work --goal 'Create chart and report from measurements.csv' --confirm
+~~~
 
-For a real project, explicitly select **the workspace you authorize**:
+**No Qwen download is required.** The Qt and voice setup needs external packages and an initial internet connection; substantial resources are downloaded for Kokoro. Full hardware prerequisites and command options are in [Installation](docs/INSTALLATION.md).
 
-```bash
-bash LogicaSophia_Run.txt gui --workspace /path/to/your/project \
-  --backend-url http://127.0.0.1:8090
-```
+## System design
 
-The GUI keeps this workspace fixed for the session; it does not enumerate the rest of the host. Results are written **outside** the workspace. Do not point this early research build at sensitive repositories or secrets.
+~~~text
+                      LOGICASOPHIA · I2PS ENGINEERING
+          ┌────────────────────────────────────────────┐
+          │  Qt Studio: Assistant · Create · Results   │
+          └────────────────────┬───────────────────────┘
+                               │ user instruction
+                  ┌────────────▼─────────────┐
+                  │ Governed task dispatcher │
+                  │ plan · check · authorize │
+                  └─────┬──────────┬─────────┘
+                        │          │ optional explicit
+             native tools│          ▼
+              ┌──────────▼─────┐ ┌─────────────────────┐
+              │ Analysis &     │ │ External local model│
+              │ engineering    │ │ (not required)      │
+              └─────┬──────────┘ └─────────────────────┘
+                    │
+        ┌───────────┼──────────────┐
+        ▼           ▼              ▼
+     PNG / PDF   Image model    Lexia / Kokoro
+        └───────────┼──────────────┘
+                    ▼
+        Files · provenance · hashes · audit records
+~~~
 
-### First engineering test
+All generated work is an **artifact that can be inspected**. The original controller enforces read-only input access on qualified paths and stores results separately. More autonomous code edits, validated execution and long-lived memory remain development targets.
 
-The bundled `workspace/hello.py` contains:
+Read the [Architecture](docs/ARCHITECTURE.md), [Features and qualification](docs/CAPABILITIES.md), [Artifact Studio](docs/ARTIFACTS_AND_IMAGES.md), [Lexia voice specification](docs/VOICE_LEXIA.md), and [Security and verification](docs/SECURITY_AND_VERIFICATION.md).
 
-```python
-def add(a, b):
-    return a + b
-```
+## Visual identity and authorship
 
-Use this exact prompt in the GUI:
+**Built by I2PS Engineering.** The original approved **LogicaSophia** gold-on-black JPEG is preserved **byte-for-byte** in [assets/identity.jpeg](assets/identity.jpeg), SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`. No substituted or invented identity artwork.
 
-> Read hello.py. What does add(7, 5) return? Show the source statement that supports your answer.
+The I2PS-owned controller, GUI, integration and engineering application are distributed as a **proprietary binary/bytecode package, free only for authorized noncommercial use**, under [LICENSE.md](LICENSE.md). The public repository supplies product documentation, licensing and the approved identity asset; it does not distribute the application’s human-readable source. Publishing a public GitHub repository does **not** make this software OSI open source. Bytecode should not be considered resistant to reverse engineering.
 
-A plausible correct interpretation is **12**, supported by the line `return a + b`. More important than the answer: verify that the GUI trace shows a `read_file` operation before the final answer and that its evidence is accepted. If the model gives the right answer without reading, it must not be reported as evidence-grounded. If it returns invalid structured actions, the run should fail rather than invent success.
+Third-party libraries, inference frameworks and weights retain their independent ownership and licenses. **I2PS Engineering is the application author and maintainer**; neither an external AI model nor an assistant is named as a software co-author.
 
-## 5. Verification, telemetry and auditability
+## Verification and current status
 
-Runs are saved to `~/.local/share/logicasophia/results/<run-id>/`:
+- **79/79 local automated application tests passed**, including 10 unified-dispatcher integration tests.
+- The local measured-data example generated a real PNG/PDF pair; PDF pagination was visually checked and corrected.
+- ZIP structure and **1,189 package manifest entries** were previously verified during v0.7.0 packaging.
+- **Not yet qualified:** Qt desktop on the target host, real Kokoro narration output, a diffusion-generated cat picture, or general engineering reasoning via an independently trained AI model.
+- Source and output file hashes prove integrity of recorded bytes, **not** correctness of an AI interpretation, future performance or code execution.
 
-- `outcome.json` — user task, model identifier, final state, model calls, answer, source evidence, elapsed time, verification scope.
-- `trace.jsonl` — hash-linked append-only event sequence for replay and tamper detection.
-- `events.sqlite3` — durable local task event ledger.
+See [v0.7.0 Release Record](docs/RELEASE_0.7.0.md), [Verification](docs/SECURITY_AND_VERIFICATION.md), and [Research Roadmap](docs/ROADMAP.md).
 
-States include RECEIVED, VALIDATED, PLANNED, POLICY_CHECKED, EXECUTING, OBSERVING, VERIFYING, ACCEPTED, FAILED, and UNCERTAIN. A missing file, unsupported tool, malformed model response or changed evidence should not be treated as completed verified work.
-
-The current result label **ACCEPTED** means the *source-integrity preconditions* were met. It is **not a claim** that the final answer is fully fact-checked, that new code compiled, or that a task was accomplished outside the read-only workspace.
-
-## 6. Security and privacy boundaries
-
-- Both the UI and model backend default to **loopback only** (`127.0.0.1`). No public deployment or LAN binding is enabled.
-- GUI task POST requests need a per-process local token and reject cross-origin requests; HTML is served with restrictive browser security headers.
-- The model may request only `read_file`, `search_files`, or a final answer. The host validates file paths and rejects traversal and symlink following at the read boundary.
-- The agent limits tool steps, query lengths, visible manifest entries and file content sizes. Local file bytes may be sent to the **configured localhost model** and are not uploaded by LogicaSophia.
-- Task output and trace contents are stored locally; restrict OS filesystem permissions yourself and review records before sharing.
-- The application is **research software**, not a formally audited sandbox. Do not expose it to untrusted users or treat it as a hardened multi-tenant service.
-
-## 7. Proposed original research and development roadmap
-
-The future of LogicaSophia extends beyond a chatbot. These are **planned research directions**, not delivered features:
-
-1. **Semantic verification:** testable claim-to-evidence links, deterministic checks for code and arithmetic, and calibrated uncertainty reporting.
-2. **Human-authorized write operations:** patches prepared as diffs, review/approval gates, isolated execution, regression tests and precise rollback evidence.
-3. **Persistent knowledge:** curated memory with provenance, retrieval, TTL/revocation and explicit separation of observed facts from suggestions.
-4. **Longer autonomous workflows:** goal decomposition, subtask dependencies, bounded recovery, confidence tracking and measurable completion criteria.
-5. **Multimodal interaction:** voice recognition and speech output after the text workflow is reproducibly qualified.
-6. **Hardware-aware distribution:** remote Linux worker discovery, workload arbitration and live measurements; later, interface with Atlas Nexus components while keeping LogicaSophia standalone.
-7. **Controlled research comparisons:** same task suites and same model against conventional agents; measure reliability, correct evidence use, latency, memory, CPU utilization, energy use and failure modes.
-
-These experiments are how we establish **our own engineering contributions**, not by claiming ownership of the underlying model or third-party software.
-
-## 8. Package testing and validation
-
-The official x86-64 Linux package includes compiled I2PS application bytecode and a CPython 3.13 runtime. **It does not distribute I2PS `.py` source.** Bytecode is not inherently resistant to reverse engineering. The package is locally smoke-tested; the target Ubuntu 26.10 machine and real Qwen inference have not been validated.
-
-The internal engineering test suite passed 40 local tests, using a simulated model for agent and GUI integrations. The packaged application entrypoint and GUI HTTP endpoints were separately tested, and the served original artwork matches the approved SHA-256. These tests do **not** prove Qwen reasoning quality on the i5.
-
-Unit and GUI integration tests use a **simulated local model server**. A green test run confirms code-level contracts, not the language reasoning quality of Qwen. First-machine qualification requires a genuinely loaded model, at least one observed file read, an accepted audit replay and manual review of answer correctness.
-
-The package includes the complete technical README, noncommercial binary-use license, I2PS Engineering authorship notice, machine-checkable checksums and an on-machine GUI screenshot helper. Proprietary LogicaSophia source and internal development files are not included.
-
-## 9. Interface capture
-
-The package includes the original approved LogicaSophia artwork. The GUI shows the selected local model, authorized workspace, task prompt, execution trace, file evidence and verification state.
-
-**A real GUI capture must come from the running application.** On Ubuntu, launch LogicaSophia, then execute the included `Capture_Actual_GUI_Screenshot.txt` helper. It saves a browser screenshot, the current `/api/status` response and capture checksums. See [GUI Capture and Evidence](docs/SCREENSHOT_EVIDENCE.md).
-
-No Qwen task screenshot is included in this release because the first live Qwen run on the designated i5 host has not yet been measured. Any future inference screenshot will be linked to its real model ID, `outcome.json` and `trace.jsonl`.
-
-## 10. Product boundaries and licensing
-
-**I2PS Engineering** maintains this LogicaSophia application and its original controller/GUI implementation. The external inference runtime and selected models have **their own copyright and licensing terms**, which must remain intact. The I2PS-owned application is distributed only as a **proprietary package**, free for permitted noncommercial use under [LICENSE.md](LICENSE.md), with authorship and third-party notices in [COPYRIGHT.md](COPYRIGHT.md). **No I2PS source code is included in the current public branch or the issued package.** Earlier public commits and development branches remain accessible even though the current branch has no I2PS application source. Deleting current files does not erase historical commits; this release does not claim that older published source has been made inaccessible. Commercial exploitation requires separate written permission. This is **not OSI open source**.
-
-This project is created independently for engineering research and progressive autonomous AI development. It makes **no ownership claim** over leaked source, public model weights, or third-party architectures, and it claims no proven performance advantage until the measurements and tests support one.
+**This public repository remains documentation-first.** The verified v0.7.0 ZIP is distributed separately until an official package release asset is published. Do not clone this repository expecting the application source or a runnable binary.
