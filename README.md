@@ -194,6 +194,10 @@ The issued package includes this complete technical README, binary-use license, 
 
 **Screenshot accuracy:** The earlier four-image collection is deprecated as release evidence. Those views included simulated task execution and stylized README renders; they are not evidence of actual Qwen inference or a live GitHub README screenshot. The current verified preview shows the packaged UI with its model backend **offline** and preserves the original approved artwork. Real Qwen screenshots require actual field execution plus corresponding audit records. See [Screenshot Evidence](docs/SCREENSHOT_EVIDENCE.md).
 
+![LogicaSophia v0.4.1 package-asset render with actual offline backend status — not a live Qwen screenshot](assets/gui-offline-package-render.png)
+
+*Offline preview derived from unchanged packaged HTML, CSS and original artwork. The backend status came from the running package; browser navigation itself was blocked, so this is a documented reconstruction of the offline UI, not a direct live-browser capture or a fabricated AI run.*
+
 ## 10. Product boundaries and licensing
 
 **I2PS Engineering** maintains this LogicaSophia application and its original controller/GUI implementation. The external inference runtime and selected models have **their own copyright and licensing terms**, which must remain intact. The I2PS-owned application is distributed only as a **proprietary package**, free for permitted noncommercial use under [LICENSE.md](LICENSE.md), with authorship and third-party notices in [COPYRIGHT.md](COPYRIGHT.md). **No I2PS source code is included in the current public branch or the issued package.** Earlier public Git history remains accessible unless repository visibility is changed; deleting current files does not erase historical commits. Commercial exploitation requires separate written permission. This is **not OSI open source**.
