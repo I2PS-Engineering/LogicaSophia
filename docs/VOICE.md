@@ -14,9 +14,9 @@ Captured audio is handled locally. A successful transcription removes the tempor
 
 | Setting | Value |
 | --- | --- |
-| Synthesis engine | Kokoro v1.0 via \`kokoro-onnx==0.6.1\` |
-| Approved voice | \`af_bella\` |
-| Language | \`en-us\` |
+| Synthesis engine | Kokoro v1.0 via `kokoro-onnx==0.6.1` |
+| Approved voice | `af_bella` |
+| Language | `en-us` |
 | Speed | 1.1 |
 | WAV output | 24 kHz mono |
 | Sentence pause | 0.28 seconds |
@@ -26,8 +26,8 @@ Two explicitly approved **I2PS Dual ISA Lab** product-name recordings are insert
 
 Kokoro downloads are accepted only when their SHA-256 values match:
 
-- \`kokoro-v1.0.onnx\` — \`7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5\`
-- \`voices-v1.0.bin\` — \`bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d\`
+- `kokoro-v1.0.onnx` — `7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5`
+- `voices-v1.0.bin` — `bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d`
 
 ## Narration Studio
 
