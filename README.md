@@ -39,33 +39,33 @@ LogicaSophia can create real **PNG charts and diagrams**, **PDF reports and brie
 
 Obtain the official **LogicaSophia 0.8.2** application archive from I2PS Engineering:
 
-\`LogicaSophia_0.8.2_Voice_Conversation_Package.zip\`
+`LogicaSophia_0.8.2_Voice_Conversation_Package.zip`
 
 The application is distributed separately as a package. **This public repository contains product documentation and original artwork, not the application source or a direct binary download.**
 
 On a Linux x86-64 desktop, extract the ZIP and open a terminal in the extracted directory:
 
-\`\`\`bash
+```bash
 # Install optional desktop and speech components (first use requires internet)
 bash LogicaSophia_Setup_And_Start.txt
 
 # Open the desktop application
 bash LogicaSophia_Start_AI.txt qt
-\`\`\`
+```
 
 Other entry points:
 
-\`\`\`bash
+```bash
 bash LogicaSophia_Start_AI.txt doctor
 bash LogicaSophia_Start_AI.txt research --query "RISC-V instruction pipeline" --confirm-network
 bash LogicaSophia_Start_AI.txt work --goal "Create chart and report from measurements.csv"
-\`\`\`
+```
 
 For input files, use the authorized workspace. The work command can preview a task before approval. See [Getting started](docs/GETTING_STARTED.md) for configuration and optional components.
 
 ## Technical overview
 
-\`\`\`text
+```text
                 LogicaSophia desktop
              Assistant · Create · Results
                          |
@@ -80,7 +80,7 @@ For input files, use the authorized workspace. The work command can preview a ta
                          |
                 Optional adapters
              image · speech · language
-\`\`\`
+```
 
 A file hash documents integrity, **not** the scientific correctness of an engineering conclusion. Some advanced capabilities require installed models and device-specific validation before use. See [Features and requirements](docs/FEATURES.md), [Architecture](docs/ARCHITECTURE.md), and [Security](docs/SECURITY.md).
 
