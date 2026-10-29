@@ -1,32 +1,17 @@
-# Capabilities and Qualification Status
+# Capabilities — LogicaSophia 0.8.1
 
-**LogicaSophia v0.7.0 · Built by I2PS Engineering**
+**Built by I2PS Engineering.**
 
-This document distinguishes an implemented code path from a locally tested feature and from a machine-qualified workflow. A UI control or adapter alone does not establish that the external runtime successfully executed.
+| Capability | Implemented | Unverified |
+| --- | --- | --- |
+| Internet research | Wikipedia + Crossref public HTTPS search, optional Brave Search, source-linked PDF and hashes | Actual live target-host provider queries |
+| Assistant Qt | Assistant, Create, Results, workspace selection, online search control | Physical Ubuntu Qt GUI acceptance |
+| Native analysis | Bounded deterministic file/Python AST/numeric tasks | General autonomous reasoning |
+| PNG/PDF reports | Real charts, architecture diagrams, source-grounded PDF briefs | Scientific validity of user inputs |
+| Image synthesis | Adapter for user-selected ComfyUI checkpoint and authentic I2PS logo | Actual diffusion image creation |
+| Lexia | Approved Kokoro v1.0 voice profile and pronunciation/approval controls | Real synthesis and complete script approval |
+| Evidence | Per-output SHA-256, task traces, source metadata | Semantic/factual truth |
 
-| System | Present in package | Local testing | Still required |
-| --- | --- | --- | --- |
-| Native analysis | Yes | Automated deterministic file/AST tests | Broader language support and real engineering task suite |
-| Model-neutral controller | Yes | Controller/authorization tests | Qualify any optional LLM on physical hardware |
-| Task planning and explicit confirmation | Yes | Ten Workbench integration tests | Wider instruction coverage and adversarial tests |
-| CSV → PNG/PDF | Yes | Real files generated from sample dataset; report visually checked | Field-specific measurements and correctness review |
-| Architecture → PNG/PDF | Yes | Structured diagram generation tested | Complex graph layouts and user acceptance |
-| Qt Assistant/Create/Results | Yes | Import/logic coverage; no full window test | Run PySide6 on Ubuntu desktop and capture genuine GUI |
-| ComfyUI text-to-image | Adapter present | Input/dependency/error-path tests | Install checkpoint, run generation, inspect actual PNG |
-| Exact logo placement | Adapter present | Missing-logo protection and file processing tests | User review of position/scale on generated image |
-| Lexia pronunciation audit | Yes | Approved kit and lexical audit tested | Confirm new terms with user |
-| Lexia short test / TTS | Yes | Gated logic | Download verified Kokoro weights and record test clip |
-| Lexia scene narration | Yes | Authorization/timing logic | Approve short test and render real multi-slide audio |
-| Input/output audit | Yes | Hash and manifest checks | Independent interpretation/result-quality validation |
-| Persistent AI memory | No | — | Design/implement and qualify |
-| Automatic code editing + regression tests | No | — | Permissions, sandbox, rollback, review |
-| Distributed workers | No | — | Separate hardware/infrastructure project |
-| Independently trained general language model | No | — | Dataset, training, evaluation, safety and compute study |
+**Internet is allowed by approved task; not an offline-only application.** Native work can run offline when that is appropriate. No Qwen or other outside model is mandatory for its deterministic pathways.
 
-**Automated tests:** 79/79 passed for the private v0.7.0 engineering code in the last recorded local run. This number does **not** include successful real ComfyUI, Kokoro or Qt field demonstrations.
-
-**Proof artifact:** The measured-data example's 13 rows are synthetic/sample input, not measured operational telemetry. Files are genuinely rendered by application code; conclusions should not be attributed to a real physical device.
-
-**Terminology:** “Verified” in the source/evidence ledger refers to observation and integrity. It is **not** a claim of semantic accuracy or general autonomy. “Engineering preview” reflects the validation level more accurately than a production “Stable” label.
-
-Next milestones are in [Roadmap](ROADMAP.md).
+See [Online Research](ONLINE_RESEARCH.md), [Architecture](ARCHITECTURE.md), [Installation](INSTALLATION.md) and [Release](RELEASE_0.8.1.md).

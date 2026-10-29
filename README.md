@@ -1,136 +1,96 @@
 # LogicaSophia
 
-**Built by I2PS Engineering.**  
-**Independent AI engineering platform · Linux-first · Proprietary noncommercial package distribution**
+**BUILT BY I2PS ENGINEERING**  
+**Independent AI engineering platform · Internet-connected research · Linux-first · Proprietary noncommercial package**
 
-![Original approved LogicaSophia identity](assets/identity.jpeg)
+![Original approved LogicaSophia artwork](assets/identity.jpeg)
 
-LogicaSophia is an independently engineered agentic AI application for **engineering analysis, technical documents, image and speech workflows, and evidence-governed task execution**. It combines an original I2PS task controller with a replaceable inference interface and real file-generation tools. It is designed to grow into a more capable autonomous engineering system without making any external foundation-model vendor the identity of the project.
+LogicaSophia is an I2PS Engineering application for **engineering analysis, online research, real PNG/PDF deliverables, creative image workflows, and approved speech/narration**. The system uses an original evidence-governed task controller and replaceable inference interfaces.
 
-> **Current release: v0.7.0 — Private Engineering Preview · October 29, 2026.** The packaged analysis and engineering-deliverable paths have passed **79 local automated tests**. Real Qt visual interaction, Kokoro audio synthesis and diffusion-image generation on the designated Ubuntu i5 have **not** been field-verified. This is an engineering preview, not a fully qualified production AI or an independently trained foundation model.
+> **Current engineering release: 0.8.1 — Connected Engineering Preview · October 29, 2026.**  
+> 104 local tests passed; packaged CLI, consent controls and PDF export checked. Online provider tests used mocked HTTP, so live search on the designated Ubuntu i5 is not yet field-qualified. Qt window operation, actual diffusion image generation and Kokoro audio remain pending field validation. This is not a production-ready general autonomous AI or newly trained foundation model.
 
-## What makes LogicaSophia different
+## Internet connection and intelligence
 
-The central contribution is the **I2PS-controlled engineering workflow**: task routing, explicit authorization, bounded tools, source observations, integrity checks, output manifests, and a readable action record. A user should be able to request a deliverable, see which inputs and methods were used, and inspect the actual output instead of trusting a confident but unsupported claim.
+**LogicaSophia is not restricted to offline mode.** It can send an approved research query to real Internet services, retrieve cited sources and generate a documented PDF. It can also run native engineering tools locally when online access is unnecessary.
 
-**Model neutrality is a design constraint.** The native default is a limited deterministic analyzer and engineering tool dispatcher. An external language model can be connected deliberately; **Qwen is neither required nor the default architecture**. External weights and runtimes remain separately licensed. LogicaSophia does not claim to have trained a new general-purpose foundation model.
+The model-independent controller currently routes `Research ...` and `Search web for ...` to a real network adapter. **Wikipedia and Crossref** provide public references without an API key. **Brave Search** provides optional broad-index search when the user explicitly configures `LOGICASOPHIA_BRAVE_API_KEY`. The query is sent only after authorization; failed services are disclosed, not replaced with invented results. The report contains actual provider metadata, source links and timestamps rather than AI-generated guesses.
 
-## What the current application can do
+**Model neutrality:** Qwen is neither the project's foundation nor a mandatory default. The native engine handles deterministic work, while external inference models can be deliberately configured. A trained general-purpose I2PS foundation model and unrestricted autonomous browsing are not yet implemented.
 
-| Capability | v0.7.0 implementation | Evidence and limits |
+## Engineering features
+
+| Capability | Included engineering pathway | Qualification |
 | --- | --- | --- |
-| Engineering source inspection | Native AST-based Python inspection and bounded read-only file tools | Tested locally; not general programming intelligence |
-| Unified engineering requests | Preview and confirm a proposed analysis, artifact, image, speech or narration task | Deterministic routing, not free-form autonomous multi-step reasoning |
-| Measured-data analysis | Read numeric CSV, compute statistics, export actual PNG chart and PDF report | Tested on sample data; results are only as reliable as the input |
-| Architecture visualization | Create PNG/PDF diagrams from explicitly supplied modules and connections | Does not invent undisclosed system architecture |
-| General image generation | Adapter to a locally configured ComfyUI checkpoint | Needs actual image model and runtime; not field-verified |
-| Logo placement | Insert a supplied authentic logo into a generated picture | No replacement/imaginary I2PS logo; visual review still required |
-| Text-to-speech | Lexia adapter for approved Kokoro voice | Installed weights and actual voice test still required |
-| Narration | Pronunciation audit, short test, approval, slide WAVs, timestamps and subtitle export | Long-form rendering requires human approval and verified model |
-| Graphical desktop | Gold/black Qt Studio with **Assistant, Create, Results** | Code integrated; Qt visual field test pending |
-| Local audit | Source hashes, task outcomes, evidence traces and export manifests | Source integrity is not proof of answer correctness |
+| Online research | Network search of Wikipedia/Crossref; optional Brave; `sources.json`, `research.md`, cited PDF and hashes | Request/response and output integration tests; live host test pending |
+| Source inspection | Scoped file reads and limited native Python AST/numeric analysis | Local automated tests |
+| Engineering PNG/PDF | CSV measurements to chart, numeric statistics and PDF; structured architecture diagrams | Real artifact generation tested on sample inputs |
+| Document studio | Paginated source-grounded PDF briefs from approved Markdown/text | Automated PDF and source-hash tests |
+| Qt desktop | **Assistant / Create / Results**, workspace selector, Web search, artifact forms | Code integrated; desktop visual test pending |
+| Creative images | Local ComfyUI adapter; user-uploaded authentic I2PS shirt logo | Image checkpoint/real generation not yet qualified |
+| Lexia speech | Approved Kokoro v1.0 / `af_bella` / `en-us` / speed 1.1 | Kit/audit validated; synthesis pending real model download |
+| Slide narration | Pronunciation audit, human approval, scene WAVs, subtitles and timing manifest | Gate tested; long-form audio pending |
+| Source/output evidence | Hashes, task record, user approval and traceable output directory | Integrity does not prove factual correctness |
 
-The product can generate **real engineering PNG/PDF files** today under tested local conditions. Its text-to-image and Lexia voice adapters are genuine integrations but **not demonstrations of completed field inference**. The request “a skateboarding cat with the I2PS logo on its shirt” needs a configured image model and the real logo file; it must not return a fabricated preview.
+**Example image request:** “Make a picture of a cat skateboarding wearing a shirt with the authentic I2PS logo.” The real I2PS logo and a working image-generation checkpoint must be supplied. The LogicaSophia identity artwork is **not** silently substituted for the corporate shirt logo.
 
-## One task, one controlled workflow
+## Deployment
 
-1. You enter an engineering or creative instruction in the **Assistant** panel, or select a specific task under **Create**.
-2. The I2PS dispatcher classifies the task against supported operations and shows an inspectable plan, required inputs and missing dependencies.
-3. **Execution requires explicit confirmation.** Unavailable models, missing data or missing logos are reported instead of silently substituted.
-4. Approved local tools execute using scoped input files and generate outputs outside the read workspace.
-5. **Results** exposes real PNG, PDF, WAV, subtitle, JSON, and evidence files as appropriate to the task.
+The public repository is a **documentation and identity repository**, not an application source checkout. Get the approved `LogicaSophia_0.8.1_Connected_Engineering_Package.zip` from I2PS Engineering and extract it on x86-64 Linux.
 
-**Example engineering instruction:** `Create an engineering report and chart from measurements.csv`. This reads supplied numeric source data; the example proof is **sample data**, not a claimed benchmark from the user’s hardware.
+Run the included commands from its extracted folder:
 
-**Example architecture instruction:** `Architecture: Sensor -> Controller -> Audit`. Only these explicitly supplied components and connections are drawn.
+```bash
+# No network request: inspect installed components
+bash LogicaSophia_Start_AI.txt doctor
 
-**Example creative instruction:** `Make a picture of a cat skateboarding with the I2PS logo on its shirt`. This requires a real local diffusion checkpoint and the user-provided logo.
+# User-authorized Internet research and real cited PDF export
+bash LogicaSophia_Start_AI.txt research --query 'RISC-V pipeline architecture' --confirm-network
 
-**Example narration script:**
-~~~text
-SLIDE 01 — INTRODUCTION
-Welcome to the I2PS Engineering laboratory.
+# Preview first, then approve the requested operation
+bash LogicaSophia_Start_AI.txt work --goal 'Research thermal design of compact server enclosures'
+bash LogicaSophia_Start_AI.txt work --goal 'Research thermal design of compact server enclosures' --confirm
 
-SLIDE 02 — RESULTS
-Here are the measurements collected during the experiment.
-~~~
-The script is audited for pronunciation before any authorized long render.
-
-## Installation and first use
-
-The v0.7.0 engineering package is a **separate, source-free ZIP delivered by I2PS Engineering**, not a source checkout of this public repository. Extract it on an **Ubuntu x86-64** computer. From inside the extracted package directory:
-
-~~~bash
-# Installs optional Qt, engineering document, and Lexia dependencies;
-# downloads and verifies the approved Kokoro model files.
-bash LogicaSophia_Setup_Lexia_And_Studio.txt
-
-# Launch the desktop interface.
-bash LogicaSophia_Start_AI.txt qt
-~~~
-
-To use the native, no-vendor-required engine in the terminal:
-
-~~~bash
-bash LogicaSophia_Start_AI.txt native
-~~~
-
-To preview and then authorize a real measured-data deliverable:
-
-~~~bash
-bash LogicaSophia_Start_AI.txt work --goal 'Create chart and report from measurements.csv'
+# CSV-based actual chart and PDF output
 bash LogicaSophia_Start_AI.txt work --goal 'Create chart and report from measurements.csv' --confirm
-~~~
 
-**No Qwen download is required.** The Qt and voice setup needs external packages and an initial internet connection; substantial resources are downloaded for Kokoro. Full hardware prerequisites and command options are in [Installation](docs/INSTALLATION.md).
+# Install optional desktop and approved Lexia dependencies, then open Qt
+bash LogicaSophia_Setup_And_Start.txt
+bash LogicaSophia_Start_AI.txt qt
+```
 
-## System design
+**Bundled:** CPython 3.13, I2PS compiled application, NumPy, Pillow, ReportLab, SoundFile, original artwork and Lexia approved kit assets, plus a standard-library HTTPS research client.
 
-~~~text
-                      LOGICASOPHIA · I2PS ENGINEERING
-          ┌────────────────────────────────────────────┐
-          │  Qt Studio: Assistant · Create · Results   │
-          └────────────────────┬───────────────────────┘
-                               │ user instruction
-                  ┌────────────▼─────────────┐
-                  │ Governed task dispatcher │
-                  │ plan · check · authorize │
-                  └─────┬──────────┬─────────┘
-                        │          │ optional explicit
-             native tools│          ▼
-              ┌──────────▼─────┐ ┌─────────────────────┐
-              │ Analysis &     │ │ External local model│
-              │ engineering    │ │ (not required)      │
-              └─────┬──────────┘ └─────────────────────┘
-                    │
-        ┌───────────┼──────────────┐
-        ▼           ▼              ▼
-     PNG / PDF   Image model    Lexia / Kokoro
-        └───────────┼──────────────┘
-                    ▼
-        Files · provenance · hashes · audit records
-~~~
+**Additional first-time dependencies:** PySide6/Qt, Kokoro ONNX and checksum-verified Kokoro v1.0 model files. Creative image generation requires a separate configured diffusion checkpoint and runtime; a broad-web Brave Search token is optional. A source-free bytecode package is not immune to reverse engineering.
 
-All generated work is an **artifact that can be inspected**. The original controller enforces read-only input access on qualified paths and stores results separately. More autonomous code edits, validated execution and long-lived memory remain development targets.
+For procedures and provenance see [Installation](docs/INSTALLATION.md), [Internet Research](docs/ONLINE_RESEARCH.md), [Capabilities](docs/CAPABILITIES.md), [Architecture](docs/ARCHITECTURE.md), [Voice / Lexia](docs/VOICE_LEXIA.md) and [Security & Verification](docs/SECURITY_AND_VERIFICATION.md).
 
-Read the [Architecture](docs/ARCHITECTURE.md), [Features and qualification](docs/CAPABILITIES.md), [Artifact Studio](docs/ARTIFACTS_AND_IMAGES.md), [Lexia voice specification](docs/VOICE_LEXIA.md), and [Security and verification](docs/SECURITY_AND_VERIFICATION.md).
+## Architecture
 
-## Visual identity and authorship
+```text
+         LogicaSophia Qt Studio · I2PS Engineering
+          Assistant  ·  Create  ·  Results
+                         |
+            Governed task dispatcher
+            plan · validate · approve
+                 /          \
+        Native tools       Online tools
+        AST / CSV          HTTPS research
+        PNG / PDF          cited metadata
+                 \          /
+                  Source evidence
+                  SHA-256 / audit
+                         |
+           Optional explicit model adapters
+           Text inference · Image · Lexia
+```
 
-**Built by I2PS Engineering.** The original approved **LogicaSophia** gold-on-black JPEG is preserved **byte-for-byte** in [assets/identity.jpeg](assets/identity.jpeg), SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`. No substituted or invented identity artwork.
+The application records **what was actually read or generated**. File-integrity checks do not establish semantic correctness; externally retrieved snippets and article metadata are not fact-checked conclusions. The controller does not silently authorize general code execution or unrestricted access to online accounts.
 
-The I2PS-owned controller, GUI, integration and engineering application are distributed as a **proprietary binary/bytecode package, free only for authorized noncommercial use**, under [LICENSE.md](LICENSE.md). The public repository supplies product documentation, licensing and the approved identity asset; it does not distribute the application’s human-readable source. Publishing a public GitHub repository does **not** make this software OSI open source. Bytecode should not be considered resistant to reverse engineering.
+## Identity and license
 
-Third-party libraries, inference frameworks and weights retain their independent ownership and licenses. **I2PS Engineering is the application author and maintainer**; neither an external AI model nor an assistant is named as a software co-author.
+**Built by I2PS Engineering.** The approved 1254 × 1254 original LogicaSophia JPEG is committed at [assets/identity.jpeg](assets/identity.jpeg), SHA-256 `03cb470f5d16dea18cd8991d5fcb4419383ad58d07375e7e7f781ccf93a67d39`, unchanged. The authorship belongs to I2PS Engineering, not to an outside AI assistant or model provider.
 
-## Verification and current status
+The I2PS application uses [proprietary noncommercial package licensing](LICENSE.md). Source files are not distributed in the current public branch or package. Third-party models, runtimes, search services and libraries retain their own licenses and terms. This is **not OSI open source**.
 
-- **79/79 local automated application tests passed**, including 10 unified-dispatcher integration tests.
-- The local measured-data example generated a real PNG/PDF pair; PDF pagination was visually checked and corrected.
-- ZIP structure and **1,189 package manifest entries** were previously verified during v0.7.0 packaging.
-- **Not yet qualified:** Qt desktop on the target host, real Kokoro narration output, a diffusion-generated cat picture, or general engineering reasoning via an independently trained AI model.
-- Source and output file hashes prove integrity of recorded bytes, **not** correctness of an AI interpretation, future performance or code execution.
-
-See [v0.7.0 Release Record](docs/RELEASE_0.7.0.md), [Verification](docs/SECURITY_AND_VERIFICATION.md), and [Research Roadmap](docs/ROADMAP.md).
-
-**This public repository remains documentation-first.** The verified v0.7.0 ZIP is distributed separately until an official package release asset is published. Do not clone this repository expecting the application source or a runnable binary.
+**Engineering release details:** [v0.8.1](docs/RELEASE_0.8.1.md). Hardware-specific live web, Qt, Kokoro and diffusion checks remain open before a full public stable qualification.
